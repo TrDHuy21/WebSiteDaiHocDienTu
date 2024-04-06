@@ -1889,11 +1889,11 @@
 												"$ref": "AAAAAAGOdpsazHPiO7w="
 											},
 											"font": "Arial;16;1",
-											"left": 424,
+											"left": 437.5,
 											"top": 588,
-											"width": 156,
+											"width": 221,
 											"height": 16,
-											"text": "1.5 quản lý tài khoản"
+											"text": "1.5 quản lý tài khoản cá nhân"
 										},
 										{
 											"_type": "LabelView",
@@ -1924,9 +1924,9 @@
 										}
 									],
 									"font": "Arial;16;0",
-									"left": 419,
+									"left": 432.5,
 									"top": 581,
-									"width": 167.375,
+									"width": 232.28125,
 									"height": 28,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGOdpsazXPj/No="
@@ -2026,7 +2026,7 @@
 							"containerChangeable": true,
 							"left": 384,
 							"top": 576,
-							"width": 236,
+							"width": 328,
 							"height": 39,
 							"nameCompartment": {
 								"$ref": "AAAAAAGOdpsazHPiO7w="
@@ -4081,8 +4081,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 340,
-									"top": 469,
+									"left": 360,
+									"top": 467,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -4102,8 +4102,8 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 348,
-									"top": 456,
+									"left": 367,
+									"top": 454,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -4123,7 +4123,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 323,
+									"left": 345,
 									"top": 494,
 									"height": 13,
 									"alpha": -1.5707963267948966,
@@ -4145,7 +4145,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 224,
-									"top": 397,
+									"top": 393,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -4165,8 +4165,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 234,
-									"top": 387,
+									"left": 233,
+									"top": 382,
 									"height": 13,
 									"alpha": 0.7853981633974483,
 									"distance": 40,
@@ -4186,8 +4186,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 206,
-									"top": 418,
+									"left": 207,
+									"top": 415,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 25,
@@ -4207,8 +4207,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 455,
-									"top": 542,
+									"left": 495,
+									"top": 543,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -4227,8 +4227,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 460,
-									"top": 529,
+									"left": 499,
+									"top": 530,
 									"height": 13,
 									"alpha": -0.7853981633974483,
 									"distance": 40,
@@ -4247,8 +4247,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 444,
-									"top": 568,
+									"left": 486,
+									"top": 569,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -4293,7 +4293,7 @@
 								"$ref": "AAAAAAGOSjGKFizWoRA="
 							},
 							"lineStyle": 1,
-							"points": "195:402;469:575",
+							"points": "195:400;511:575",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGOdqNEOQVQ/SQ="
@@ -11104,7 +11104,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGOSjD7IywhoDI="
 					},
-					"name": "1.5 quản lý tài khoản"
+					"name": "1.5 quản lý tài khoản cá nhân"
 				},
 				{
 					"_type": "UMLUseCase",
