@@ -32,9 +32,38 @@ public class UserEntity {
 
     @ManyToMany
     @JoinTable(
-            name = "user_role",
+            name = "role_user",
             joinColumns = @JoinColumn(name="user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private List<RoleEntity> roles;
+
+    @ManyToOne
+    @JoinColumn(name = "quanlykhoa_id")
+    private KhoaEntity quanLyKhoa;
+
+    @ManyToOne
+    @JoinColumn(name = "giangvienkhoa_id")
+    private KhoaEntity giangVienKhoa;
+
+    @ManyToMany
+    @JoinTable (
+            name="monhoc_giangvien",
+            joinColumns=@JoinColumn(name="giangvien_id"),
+            inverseJoinColumns=@JoinColumn(name="monhoc_id")
+    )
+    private List<MonHocEntity> monDayList ;
+
+    @ManyToOne
+    @JoinColumn(name = "lopchinhquy_id")
+    private LopChinhQuyEntity lopChinhQuyEntity;
+
+    @OneToMany(mappedBy = "giangVien")
+    private List<LopMonHocEntity> lopMonHocEntityList;
+
+    @OneToMany(mappedBy = "sinhVien")
+    private List<QuaTrinhHocTap> quaTrinhHocTapList;
+
+    @OneToMany(mappedBy = "sinhVien")
+    private List<KetQuaHocTapEntity> ketQuaHocTapEntityList;
 }
