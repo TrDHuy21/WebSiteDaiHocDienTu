@@ -26,6 +26,9 @@ public class NganhEntity {
     @Column(name = "mo_ta")
     private  String moTa;
 
+    @Column(name = "state")
+    private  Byte state;
+
     @ManyToOne()
     @JoinColumn(name = "khoa_id")
     private KhoaEntity khoaEntity;

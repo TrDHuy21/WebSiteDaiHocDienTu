@@ -6,25 +6,30 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "diemthuongxuyen")
-public class DiemThuongXuyenEntity {
+@Table(name = "quan_ly_khoa")
+public class QuanLyKhoaEntity {
+
 
     @Id
     @Column(name = "id")
-    private long id;
+    private String id;
 
-    @Column(name = "diem")
-    private float diem;
+    @Column(name = "state")
+    private Byte state;
 
-    @Column(name = "loai")
-    private byte loai;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity userEntity;
 
     @ManyToOne
-    @JoinColumn(name = "ketquahoctap_id")
-    private KetQuaHocTapEntity ketQuaHocTapEntity;
+    @JoinColumn(name = "khoa_id")
+    private KhoaEntity khoaEntity;
+
+
 }

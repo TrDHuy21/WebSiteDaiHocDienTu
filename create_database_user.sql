@@ -8,7 +8,7 @@ GRANT ALL PRIVILEGES ON * . * TO 'ttcnNhom2'@'%';
 
 
 -- drop database
-DROP SCHEMA IF EXISTS `ttcn-nhom2`;
+DROP SCHEMA IF EXISTS `ttcn_nhom2`;
 
 -- create database
-CREATE SCHEMA `ttcn-nhom2`;
+CREATE SCHEMA `ttcn_nhom2`;

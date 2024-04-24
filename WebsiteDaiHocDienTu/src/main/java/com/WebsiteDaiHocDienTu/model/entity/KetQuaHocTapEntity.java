@@ -13,26 +13,47 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "ketquahoctap")
+@Table(name = "ket_qua_hoc_tap")
 public class KetQuaHocTapEntity {
     @Id
     @Column(name = "id")
     private String id;
 
-    @ManyToOne
-    @JoinColumn(name = "sinhvien_id")
-    private UserEntity sinhVien;
+    @Column(name = "tx1")
+    private Float tx1;
+
+    @Column(name = "tx2")
+    private Float tx2;
+
+    @Column(name = "tx3")
+    private Float tx3;
+
+    @Column(name = "giua_ki1")
+    private Float giuaKi1;
+
+    @Column(name = "giua_ki2")
+    private Float giuaKi2;
+
+    @Column(name = "giua_ki3")
+    private Float giuaKi3;
+
+    @Column(name = "thi1")
+    private Float thi1;
+
+    @Column(name = "thi2")
+    private Float thi2;
+
+    @Column(name = "phuc_khao_1")
+    private Float phucKhao1;
+
+    @Column(name = "phuc_khao_2")
+    private Float phucKhao2;
 
     @ManyToOne
-    @JoinColumn(name =  "monhoc_id")
+    @JoinColumn(name =  "mon_hoc_id")
     private MonHocEntity monHocEntity;
 
-    @OneToMany(mappedBy = "ketQuaHocTapEntity")
-    private List<DiemGiuaKiEntity> diemGiuaKiEntityList;
-
-    @OneToMany(mappedBy = "ketQuaHocTapEntity")
-    private List<DiemThuongXuyenEntity> diemThuongXuyenEntityList;
-
-    @OneToMany(mappedBy = "ketQuaHocTapEntity")
-    private List<DiemThiEntity> diemThiEntityList;
+    @OneToOne
+    @JoinColumn(name = "qua_trinh_hoc_tap_id")
+    private QuaTrinhHocTapEntity quaTrinhHocTapEntity;
 }

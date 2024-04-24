@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.catalina.User;
 
 import java.util.Date;
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "lopmonhoc")
+@Table(name = "lop_mon_hoc")
 public class LopMonHocEntity {
 
     @Id
@@ -25,22 +24,32 @@ public class LopMonHocEntity {
     @Column(name = "ten")
     private String ten;
 
-    @Column(name = "ngaybatdau")
+    @Column(name = "ngay_bat_dau")
     private Date ngayBatDau;
 
-    @ManyToOne
-    @JoinColumn(name = "giangvien_id")
-    private UserEntity giangVien;
+    @Column(name = "state")
+    private Byte state;
 
     @ManyToOne
-    @JoinColumn(name = "monhoc_id")
+    @JoinColumn(name = "giang_vien_id")
+    private GiangVienEntity giangVienEntity;
+
+    @ManyToOne
+    @JoinColumn(name = "mon_hoc_id")
     private MonHocEntity monHocEntity;
 
+    @ManyToMany
+    @JoinTable (
+            name="lopmonhoc_sinhvien",
+            joinColumns=@JoinColumn(name="lop_mon_hoc_id"),
+            inverseJoinColumns=@JoinColumn(name="sinh_vien_id")
+    )
+    private List<SinhVienEntity> sinhVienEntityList;
 
     @OneToMany(mappedBy = "lopMonHocEntity")
     private List<ThoiKhoaBieuEntity> thoiKhoaBieuEntityList;
 
     @OneToMany(mappedBy = "lopMonHocEntity")
-    private List<QuaTrinhHocTap> quaTrinhHocTapList;
+    private List<QuaTrinhHocTapEntity> quaTrinhHocTapEntityList;
 
 }

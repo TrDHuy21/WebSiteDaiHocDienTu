@@ -13,34 +13,32 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "chuong_trinh_hoc")
-public class ChuongTrinhHocEntity {
+@Table(name = "giang_vien")
+public class GiangVienEntity {
 
     @Id
     @Column(name = "id")
     private String id;
 
-    @Column(name = "ten")
-    private String ten;
-
-    @Column(name = "mo_ta")
-    private String moTa;
-
     @Column(name = "state")
-    private  Byte state;
+    private Byte state;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity userEntity;
 
     @ManyToOne
-    @JoinColumn(name = "nganh_id")
-    private NganhEntity nganhEntity;
+    @JoinColumn(name = "khoa_id")
+    private KhoaEntity khoaEntity;
 
     @ManyToMany
     @JoinTable (
-            name="monhoc_chuongtrinhhoc",
-            joinColumns=@JoinColumn(name="chuong_trinh_hoc_id"),
+            name="monhoc_giangvien",
+            joinColumns=@JoinColumn(name="giang_vien_id"),
             inverseJoinColumns=@JoinColumn(name="mon_hoc_id")
     )
     private List<MonHocEntity> monHocEntityList;
 
-    @OneToMany(mappedBy = "chuongTrinhHocEntity")
-    private List<LopChinhQuyEntity> lopChinhQuyEntityList;
+    @OneToMany(mappedBy = "giangVienEntity")
+    private List<LopMonHocEntity> lopMonHocEntityList;
 }

@@ -14,7 +14,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "lopchinhquy")
+@Table(name = "lop_chinh_quy")
 public class LopChinhQuyEntity {
 
     @Id
@@ -24,10 +24,13 @@ public class LopChinhQuyEntity {
     @Column(name = "khoa")
     private int khoa;
 
+    @Column(name = "state")
+    private  Byte state;
+
     @ManyToOne
-    @JoinColumn(name = "chuongtrinhhoc_id")
+    @JoinColumn(name = "chuong_trinh_hoc_id")
     private ChuongTrinhHocEntity chuongTrinhHocEntity;
 
     @OneToMany(mappedBy = "lopChinhQuyEntity")
-    private List<UserEntity> userEntityList;
+    private List<SinhVienEntity> sinhVienEntityList;
 }

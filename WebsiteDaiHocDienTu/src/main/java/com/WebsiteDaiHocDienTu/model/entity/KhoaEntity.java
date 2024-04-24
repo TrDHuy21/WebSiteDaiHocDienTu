@@ -26,11 +26,11 @@ public class KhoaEntity {
     @Column(name = "mo_ta")
     private  String moTa;
 
-    @OneToMany(mappedBy = "quanLyKhoa")
-    private List<UserEntity> quanLyKhoaList;
+    @OneToMany(mappedBy = "khoaEntity")
+    private List<QuanLyKhoaEntity> quanLyKhoaEntityList;
 
-    @OneToMany(mappedBy = "giangVienKhoa")
-    private List<UserEntity> giangVienKhoaList;
+    @OneToMany(mappedBy = "khoaEntity")
+    private List<GiangVienEntity> giangVienEntityList;
 
     @OneToMany(mappedBy = "khoaEntity")
     private List<NganhEntity> nganhEntityList;

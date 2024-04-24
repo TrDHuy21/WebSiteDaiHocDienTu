@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -27,8 +28,24 @@ public class UserEntity {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "full_name")
-    private String fullName;
+    @Column(name = "ho")
+    private String ho;
+
+    @Column(name = "ten")
+    private String ten;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "ngay_sinh")
+    private Date ngaySinh;
+
+    @Column(name = "gioi_tinh")
+    private Boolean gioiTinh;
+
+    @Column(name = "state")
+    private Byte state;
+
 
     @ManyToMany
     @JoinTable(
@@ -38,32 +55,12 @@ public class UserEntity {
     )
     private List<RoleEntity> roles;
 
-    @ManyToOne
-    @JoinColumn(name = "quanlykhoa_id")
-    private KhoaEntity quanLyKhoa;
+    @OneToOne(mappedBy = "userEntity")
+    private SinhVienEntity sinhVienEntity;
+    @OneToOne(mappedBy = "userEntity")
+    private GiangVienEntity giangVienEntity;
+    @OneToOne(mappedBy = "userEntity")
+    private QuanLyKhoaEntity quanLyKhoa;
 
-    @ManyToOne
-    @JoinColumn(name = "giangvienkhoa_id")
-    private KhoaEntity giangVienKhoa;
 
-    @ManyToMany
-    @JoinTable (
-            name="monhoc_giangvien",
-            joinColumns=@JoinColumn(name="giangvien_id"),
-            inverseJoinColumns=@JoinColumn(name="monhoc_id")
-    )
-    private List<MonHocEntity> monDayList ;
-
-    @ManyToOne
-    @JoinColumn(name = "lopchinhquy_id")
-    private LopChinhQuyEntity lopChinhQuyEntity;
-
-    @OneToMany(mappedBy = "giangVien")
-    private List<LopMonHocEntity> lopMonHocEntityList;
-
-    @OneToMany(mappedBy = "sinhVien")
-    private List<QuaTrinhHocTap> quaTrinhHocTapList;
-
-    @OneToMany(mappedBy = "sinhVien")
-    private List<KetQuaHocTapEntity> ketQuaHocTapEntityList;
 }

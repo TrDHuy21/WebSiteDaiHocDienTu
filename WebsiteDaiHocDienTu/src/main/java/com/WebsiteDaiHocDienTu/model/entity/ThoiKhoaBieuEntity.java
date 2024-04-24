@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "thoikhoabieu")
+@Table(name = "thoi_khoa_bieu")
 public class ThoiKhoaBieuEntity {
 
     @Id
@@ -25,6 +25,6 @@ public class ThoiKhoaBieuEntity {
     private int tietBatDau;
 
     @ManyToOne
-    @JoinColumn(name = "lopmonhoc_id")
+    @JoinColumn(name = "lop_mon_hoc_id")
     private LopMonHocEntity lopMonHocEntity;
 }

@@ -5,32 +5,31 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.catalina.User;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "quatrinhhoctap")
-public class QuaTrinhHocTap {
+@Table(name = "qua_trinh_hoc_tap")
+public class QuaTrinhHocTapEntity {
     @Id
     @Column(name = "id")
     private String id;
 
-    @Column(name = "sotietnghi")
+    @Column(name = "so_tiet_nghi")
     private int soTietNghi;
 
     @ManyToOne
-    @JoinColumn(name = "sinhVien_id")
-    private UserEntity sinhVien;
+    @JoinColumn(name = "sinh_vien_id")
+    private SinhVienEntity sinhVienEntity;
 
     @ManyToOne
-    @JoinColumn(name = "lopmonhoc_id")
+    @JoinColumn(name = "lop_mon_hoc_id")
     private LopMonHocEntity lopMonHocEntity;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "lopmonhoc_id")
-//    private LopMonHocEntity lopMonHocEntity;
+
+    @OneToOne(mappedBy = "quaTrinhHocTapEntity")
+    private KetQuaHocTapEntity ketQuaHocTapEntity;
+
 
 }

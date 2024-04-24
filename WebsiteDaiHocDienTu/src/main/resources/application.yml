@@ -2,12 +2,12 @@ spring:
   application:
     name: WebsiteDaiHocDienTu
   datasource:
-    url: jdbc:mysql://localhost:3306/ttcn-nhom2
+    url: jdbc:mysql://localhost:3306/ttcn_nhom2
     username: ttcnNhom2
     password: ttcnNhom2
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
     show-sql: true
     properties:
       hibernate:

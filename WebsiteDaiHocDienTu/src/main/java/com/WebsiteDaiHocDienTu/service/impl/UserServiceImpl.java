@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -25,14 +26,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseEntity<?> save(UserDTO userDTO) {
-        RoleEntity role = roleRepository.findByName(RolesEnum.USER.name()).orElseThrow(()-> new NullPointerException("Role not null"));
-        UserEntity test = userRepository.findOneByUserName("user").orElseThrow();
-        List<RoleEntity> roles = new ArrayList<>();
-        roles.add(role);
         UserEntity user = new UserEntity();
-        user.setRoles(roles);
         user.setUserName(userDTO.getUserName());
-        user.setFullName(userDTO.getUserName());
         user.setPassword(userDTO.getPassword());
         user = userRepository.save(user);
         return ResponseEntity.ok(user);
