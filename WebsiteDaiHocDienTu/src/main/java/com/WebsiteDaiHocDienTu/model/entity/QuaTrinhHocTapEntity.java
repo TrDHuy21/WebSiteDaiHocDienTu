@@ -14,6 +14,7 @@ import lombok.Setter;
 @Table(name = "qua_trinh_hoc_tap")
 public class QuaTrinhHocTapEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private String id;
 

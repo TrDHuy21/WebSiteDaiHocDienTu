@@ -1,10 +1,12 @@
 package com.WebsiteDaiHocDienTu.model.entity;
 
+import com.WebsiteDaiHocDienTu.config.StringPrefixedSequenceIdGenerator;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.List;
 
@@ -17,6 +19,15 @@ import java.util.List;
 public class GiangVienEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gv_seq")
+    @GenericGenerator(
+            name = "gv_seq",
+            strategy = "com.WebsiteDaiHocDienTu.config.StringPrefixedSequenceIdGenerator",
+            parameters = {
+                    @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "50"),
+                    @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "GV"),
+                    @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d"),
+            })
     @Column(name = "id")
     private String id;
 

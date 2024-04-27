@@ -16,6 +16,7 @@ import java.util.List;
 @Table(name = "ket_qua_hoc_tap")
 public class KetQuaHocTapEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private String id;
 

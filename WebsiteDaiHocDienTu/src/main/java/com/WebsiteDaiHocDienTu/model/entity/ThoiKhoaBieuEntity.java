@@ -15,6 +15,7 @@ import lombok.Setter;
 public class ThoiKhoaBieuEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private String id;
 

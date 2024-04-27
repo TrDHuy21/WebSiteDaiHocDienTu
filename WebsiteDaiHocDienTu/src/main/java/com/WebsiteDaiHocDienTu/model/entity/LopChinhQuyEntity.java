@@ -18,6 +18,7 @@ import java.util.List;
 public class LopChinhQuyEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private String id;
 
