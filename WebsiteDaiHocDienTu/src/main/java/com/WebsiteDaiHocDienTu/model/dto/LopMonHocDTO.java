@@ -12,7 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LopMonHocDTO {
-    private String id;
+    private Integer id;
     private String ten;
     private Date ngayBatDau;
     private Byte state;

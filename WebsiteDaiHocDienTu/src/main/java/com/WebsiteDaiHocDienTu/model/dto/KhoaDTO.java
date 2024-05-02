@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class KhoaDTO {
-    private String id;
+    private Integer id;
     private String ten;
     private  String moTa;
 }

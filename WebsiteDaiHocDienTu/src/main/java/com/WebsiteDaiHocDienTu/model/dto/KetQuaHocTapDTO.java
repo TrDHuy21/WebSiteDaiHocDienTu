@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class KetQuaHocTapDTO {
-    private String id;
+    private Integer id;
     private Float tx1;
     private Float tx2;
     private Float tx3;

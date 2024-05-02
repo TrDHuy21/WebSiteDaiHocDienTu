@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class NganhEntity {
-    private String id;
+    private Integer id;
     private String ten;
     private  String moTa;
     private  Byte state;

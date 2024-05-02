@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LopChinhQuyDTO {
-    private String id;
+    private Integer id;
     private int khoa;
     private  Byte state;
 }

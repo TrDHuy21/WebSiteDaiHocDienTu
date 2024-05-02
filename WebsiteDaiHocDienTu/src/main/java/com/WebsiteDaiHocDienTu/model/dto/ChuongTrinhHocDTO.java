@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ChuongTrinhHocDTO {
-    private String id;
+    private Integer id;
     private String ten;
     private String moTa;
     private  Byte state;
