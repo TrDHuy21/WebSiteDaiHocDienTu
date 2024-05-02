@@ -28,7 +28,6 @@ public class GiangVienEntity {
                     @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "GV"),
                     @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d"),
             })
-    @Column(name = "id")
     private String id;
 
     @Column(name = "state")

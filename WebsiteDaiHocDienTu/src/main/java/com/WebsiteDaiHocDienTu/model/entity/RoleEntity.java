@@ -18,7 +18,6 @@ public class RoleEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Byte id;
 
     @Column(name = "ten")

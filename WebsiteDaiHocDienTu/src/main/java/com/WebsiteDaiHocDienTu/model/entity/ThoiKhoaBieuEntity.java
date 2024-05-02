@@ -16,8 +16,7 @@ public class ThoiKhoaBieuEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private String id;
+    private Integer id;
 
     @Column(name = "so_tiet")
     private int soTiet;
