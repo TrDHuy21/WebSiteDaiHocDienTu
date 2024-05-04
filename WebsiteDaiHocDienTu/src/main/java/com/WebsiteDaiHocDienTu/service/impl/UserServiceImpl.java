@@ -1,6 +1,7 @@
 package com.WebsiteDaiHocDienTu.service.impl;
 
 import com.WebsiteDaiHocDienTu.enums.RolesEnum;
+import com.WebsiteDaiHocDienTu.mapper.DataMapper;
 import com.WebsiteDaiHocDienTu.model.dto.UserDTO;
 import com.WebsiteDaiHocDienTu.model.entity.RoleEntity;
 import com.WebsiteDaiHocDienTu.model.entity.UserEntity;
@@ -26,10 +27,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseEntity<?> save(UserDTO userDTO) {
-        UserEntity user = new UserEntity();
-        user.setUserName(userDTO.getUserName());
-        user.setPassword(userDTO.getPassword());
+        UserEntity user = DataMapper.toEntity(userDTO,UserEntity.class);
         user = userRepository.save(user);
-        return ResponseEntity.ok(user);
+        return ResponseEntity.ok(DataMapper.toDTO(user,UserDTO.class));
+
+
+//        UserEntity user = new UserEntity();
+//        user.setUserName(userDTO.getUserName());
+//        user.setPassword(userDTO.getPassword());
+//        user = userRepository.save(user);
+//        return ResponseEntity.ok(user);
     }
 }
