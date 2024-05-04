@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-md bg-dark navbar-dark mb-3"
+     th:fragment="nav_quanLy" xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    <ul class="navbar-nav" sec:authorize="hasRole('ADMIN')">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/verify-file}">Tài khoản và người dùng</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/generate-key}">Quản lý khoa</a>
+        </li>
+    </ul>
+
+    <ul class="navbar-nav" sec:authorize="hasRole('QLK')">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/verify-file}">Quản lý môn học</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/generate-key}">Quản lý ngành</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/register-key}">Quản lý chương trình học</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/thongtinkhoa}">Lớp chính quy</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/sign-file}">Lớp môn học</a>
+        </li>
+    </ul>
+</nav>

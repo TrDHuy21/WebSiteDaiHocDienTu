@@ -1,0 +1,13 @@
+<nav class="navbar navbar-expand-md bg-dark navbar-dark mb-3"
+     th:fragment="nav_quanLy" xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    <ul class="navbar-nav" sec:authorize="hasRole('GV')">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/verify-file}">Quản lý kết quả học tập</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/generate-key}">Thời khóa biểu</a>
+        </li>
+    </ul>
+
+</nav>

@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-md bg-dark navbar-dark mb-3"
+     th:fragment="nav_quanLy" xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    <ul class="navbar-nav" sec:authorize="hasRole('SV')">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/verify-file}">Lớp chính quy</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/generate-key}">Đăng ký môn học</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/generate-key}">Ket qua hoc tap</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/generate-key}">Xem thoi khoa bieu</a>
+        </li>
+    </ul>
+
+</nav>
