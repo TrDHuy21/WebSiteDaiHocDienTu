@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.GenericGenerators;
 
 import java.util.List;
 
@@ -17,7 +19,8 @@ import java.util.List;
 public class KhoaEntity {
 
     @Id
-    @Column(name = "id")
+    @GeneratedValue(generator = "KHOA")
+    @GenericGenerator(name="KHOA",strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
     @Column(name = "ten")
@@ -25,12 +28,6 @@ public class KhoaEntity {
 
     @Column(name = "mo_ta")
     private  String moTa;
-
-    @OneToMany(mappedBy = "quanLyKhoa")
-    private List<UserEntity> quanLyKhoaList;
-
-    @OneToMany(mappedBy = "giangVienKhoa")
-    private List<UserEntity> giangVienKhoaList;
 
     @OneToMany(mappedBy = "khoaEntity")
     private List<NganhEntity> nganhEntityList;

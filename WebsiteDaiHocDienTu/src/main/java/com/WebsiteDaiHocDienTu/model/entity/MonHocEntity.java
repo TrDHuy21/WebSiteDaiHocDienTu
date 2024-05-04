@@ -31,14 +31,6 @@ public class MonHocEntity {
 
     @ManyToMany
     @JoinTable (
-            name="monhoc_giangvien",
-            joinColumns=@JoinColumn(name="monhoc_id"),
-            inverseJoinColumns=@JoinColumn(name="giangvien_id")
-    )
-    private List<UserEntity> giangVienList;
-
-    @ManyToMany
-    @JoinTable (
             name="monhoc_chuongTrinhHoc",
             joinColumns=@JoinColumn(name="monhoc_id"),
             inverseJoinColumns=@JoinColumn(name="chuongtrinhhoc_id")

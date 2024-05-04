@@ -20,10 +20,6 @@ public class KetQuaHocTapEntity {
     private String id;
 
     @ManyToOne
-    @JoinColumn(name = "sinhvien_id")
-    private UserEntity sinhVien;
-
-    @ManyToOne
     @JoinColumn(name =  "monhoc_id")
     private MonHocEntity monHocEntity;
 

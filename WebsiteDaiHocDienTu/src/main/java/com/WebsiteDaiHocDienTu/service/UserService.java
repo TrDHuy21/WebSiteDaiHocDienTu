@@ -5,4 +5,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface UserService {
     ResponseEntity<?> save(UserDTO userDTO);
+    ResponseEntity<?>updateByUser(UserDTO userDTO);
+    ResponseEntity<?> deleteByUserId(Long[] ids);
+
 }

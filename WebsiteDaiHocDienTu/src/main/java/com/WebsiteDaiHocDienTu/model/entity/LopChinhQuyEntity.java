@@ -28,6 +28,4 @@ public class LopChinhQuyEntity {
     @JoinColumn(name = "chuongtrinhhoc_id")
     private ChuongTrinhHocEntity chuongTrinhHocEntity;
 
-    @OneToMany(mappedBy = "lopChinhQuyEntity")
-    private List<UserEntity> userEntityList;
 }

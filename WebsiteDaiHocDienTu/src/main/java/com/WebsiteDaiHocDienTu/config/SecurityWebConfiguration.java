@@ -17,7 +17,7 @@ public class SecurityWebConfiguration {
                 .csrf(c -> c.disable())
                 .authorizeHttpRequests(auth ->
                     auth
-                            .requestMatchers("/home/**").permitAll()
+                            .requestMatchers("/**").permitAll()
                             .anyRequest().authenticated()
                         );
         return http.build();

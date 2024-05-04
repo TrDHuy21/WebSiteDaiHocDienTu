@@ -29,10 +29,6 @@ public class LopMonHocEntity {
     private Date ngayBatDau;
 
     @ManyToOne
-    @JoinColumn(name = "giangvien_id")
-    private UserEntity giangVien;
-
-    @ManyToOne
     @JoinColumn(name = "monhoc_id")
     private MonHocEntity monHocEntity;
 

@@ -22,10 +22,6 @@ public class QuaTrinhHocTap {
     private int soTietNghi;
 
     @ManyToOne
-    @JoinColumn(name = "sinhVien_id")
-    private UserEntity sinhVien;
-
-    @ManyToOne
     @JoinColumn(name = "lopmonhoc_id")
     private LopMonHocEntity lopMonHocEntity;
 //
