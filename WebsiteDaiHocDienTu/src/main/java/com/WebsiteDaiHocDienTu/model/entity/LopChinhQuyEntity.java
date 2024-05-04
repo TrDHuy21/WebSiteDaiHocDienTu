@@ -29,8 +29,8 @@ public class LopChinhQuyEntity {
 
     @ManyToOne
     @JoinColumn(name = "chuong_trinh_hoc_id")
-    private ChuongTrinhHocEntity chuongTrinhHocEntity;
+    private ChuongTrinhHocEntity chuongTrinhHoc;
 
     @OneToMany(mappedBy = "lopChinhQuyEntity")
-    private List<SinhVienEntity> sinhVienEntityList;
+    private List<SinhVienEntity> sinhVienList;
 }

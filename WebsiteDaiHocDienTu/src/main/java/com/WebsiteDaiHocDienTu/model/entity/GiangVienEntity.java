@@ -35,11 +35,11 @@ public class GiangVienEntity {
 
     @OneToOne
     @JoinColumn(name = "user_id")
-    private UserEntity userEntity;
+    private UserEntity user;
 
     @ManyToOne
     @JoinColumn(name = "khoa_id")
-    private KhoaEntity khoaEntity;
+    private KhoaEntity khoa;
 
     @ManyToMany
     @JoinTable (
@@ -47,8 +47,8 @@ public class GiangVienEntity {
             joinColumns=@JoinColumn(name="giang_vien_id"),
             inverseJoinColumns=@JoinColumn(name="mon_hoc_id")
     )
-    private List<MonHocEntity> monHocEntityList;
+    private List<MonHocEntity> monHocList;
 
-    @OneToMany(mappedBy = "giangVienEntity")
-    private List<LopMonHocEntity> lopMonHocEntityList;
+    @OneToMany(mappedBy = "giangVien")
+    private List<LopMonHocEntity> lopMonHocList;
 }

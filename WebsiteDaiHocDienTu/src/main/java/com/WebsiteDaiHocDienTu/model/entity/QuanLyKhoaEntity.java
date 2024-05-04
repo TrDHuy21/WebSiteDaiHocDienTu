@@ -35,11 +35,11 @@ public class QuanLyKhoaEntity {
 
     @OneToOne
     @JoinColumn(name = "user_id")
-    private UserEntity userEntity;
+    private UserEntity user;
 
     @ManyToOne
     @JoinColumn(name = "khoa_id")
-    private KhoaEntity khoaEntity;
+    private KhoaEntity khoa;
 
 
 }

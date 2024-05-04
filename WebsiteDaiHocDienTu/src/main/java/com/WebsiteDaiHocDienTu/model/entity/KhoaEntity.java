@@ -1,10 +1,7 @@
 package com.WebsiteDaiHocDienTu.model.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -14,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "khoa")
+@ToString
 public class KhoaEntity {
 
     @Id
@@ -26,17 +24,20 @@ public class KhoaEntity {
     @Column(name = "mo_ta")
     private  String moTa;
 
-    @OneToMany(mappedBy = "khoaEntity")
-    private List<QuanLyKhoaEntity> quanLyKhoaEntityList;
+    @Column(name = "state")
+    private Byte state;
 
-    @OneToMany(mappedBy = "khoaEntity")
-    private List<GiangVienEntity> giangVienEntityList;
+    @OneToMany(mappedBy = "khoa")
+    private List<QuanLyKhoaEntity> quanLyKhoaList;
 
-    @OneToMany(mappedBy = "khoaEntity")
-    private List<NganhEntity> nganhEntityList;
+    @OneToMany(mappedBy = "khoa")
+    private List<GiangVienEntity> giangVienList;
 
-    @OneToMany(mappedBy = "khoaEntity")
-    private List<MonHocEntity> monHocEntityList;
+    @OneToMany(mappedBy = "khoa")
+    private List<NganhEntity> nganhList;
+
+    @OneToMany(mappedBy = "khoa")
+    private List<MonHocEntity> monHocEList;
 
 
 }

@@ -32,11 +32,11 @@ public class LopMonHocEntity {
 
     @ManyToOne
     @JoinColumn(name = "giang_vien_id")
-    private GiangVienEntity giangVienEntity;
+    private GiangVienEntity giangVien;
 
     @ManyToOne
     @JoinColumn(name = "mon_hoc_id")
-    private MonHocEntity monHocEntity;
+    private MonHocEntity monHoc;
 
     @ManyToMany
     @JoinTable (
@@ -44,12 +44,12 @@ public class LopMonHocEntity {
             joinColumns=@JoinColumn(name="lop_mon_hoc_id"),
             inverseJoinColumns=@JoinColumn(name="sinh_vien_id")
     )
-    private List<SinhVienEntity> sinhVienEntityList;
+    private List<SinhVienEntity> sinhVienList;
 
-    @OneToMany(mappedBy = "lopMonHocEntity")
-    private List<ThoiKhoaBieuEntity> thoiKhoaBieuEntityList;
+    @OneToMany(mappedBy = "lopMonHoc")
+    private List<ThoiKhoaBieuEntity> thoiKhoaBieuList;
 
-    @OneToMany(mappedBy = "lopMonHocEntity")
-    private List<QuaTrinhHocTapEntity> quaTrinhHocTapEntityList;
+    @OneToMany(mappedBy = "lopMonHoc")
+    private List<QuaTrinhHocTapEntity> quaTrinhHocTapList;
 
 }

@@ -26,5 +26,5 @@ public class ThoiKhoaBieuEntity {
 
     @ManyToOne
     @JoinColumn(name = "lop_mon_hoc_id")
-    private LopMonHocEntity lopMonHocEntity;
+    private LopMonHocEntity lopMonHoc;
 }

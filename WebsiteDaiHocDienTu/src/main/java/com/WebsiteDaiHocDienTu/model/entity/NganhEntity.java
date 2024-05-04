@@ -31,10 +31,10 @@ public class NganhEntity {
 
     @ManyToOne()
     @JoinColumn(name = "khoa_id")
-    private KhoaEntity khoaEntity;
+    private KhoaEntity khoa;
 
-    @OneToMany(mappedBy = "nganhEntity")
-    private List<ChuongTrinhHocEntity> chuongTrinhHocEntityList;
+    @OneToMany(mappedBy = "nganh")
+    private List<ChuongTrinhHocEntity> chuongTrinhHocList;
 
 
 }

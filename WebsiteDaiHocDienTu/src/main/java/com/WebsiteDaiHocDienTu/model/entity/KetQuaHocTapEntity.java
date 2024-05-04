@@ -51,9 +51,9 @@ public class KetQuaHocTapEntity {
 
     @ManyToOne
     @JoinColumn(name =  "mon_hoc_id")
-    private MonHocEntity monHocEntity;
+    private MonHocEntity monHoc;
 
     @OneToOne
     @JoinColumn(name = "qua_trinh_hoc_tap_id")
-    private QuaTrinhHocTapEntity quaTrinhHocTapEntity;
+    private QuaTrinhHocTapEntity quaTrinhHocTap;
 }

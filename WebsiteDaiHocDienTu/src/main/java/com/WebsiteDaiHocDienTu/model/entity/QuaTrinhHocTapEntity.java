@@ -22,14 +22,14 @@ public class QuaTrinhHocTapEntity {
 
     @ManyToOne
     @JoinColumn(name = "sinh_vien_id")
-    private SinhVienEntity sinhVienEntity;
+    private SinhVienEntity sinhVien;
 
     @ManyToOne
     @JoinColumn(name = "lop_mon_hoc_id")
-    private LopMonHocEntity lopMonHocEntity;
+    private LopMonHocEntity lopMonHoc;
 
-    @OneToOne(mappedBy = "quaTrinhHocTapEntity")
-    private KetQuaHocTapEntity ketQuaHocTapEntity;
+    @OneToOne(mappedBy = "quaTrinhHocTap")
+    private KetQuaHocTapEntity ketQuaHocTap;
 
 
 }

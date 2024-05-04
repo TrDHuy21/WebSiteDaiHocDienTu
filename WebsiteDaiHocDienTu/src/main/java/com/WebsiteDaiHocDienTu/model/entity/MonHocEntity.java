@@ -51,7 +51,7 @@ public class MonHocEntity {
 
     @ManyToOne()
     @JoinColumn(name = "khoa_id")
-    private KhoaEntity khoaEntity;
+    private KhoaEntity khoa;
 
     @ManyToMany
     @JoinTable (
@@ -59,7 +59,7 @@ public class MonHocEntity {
             joinColumns=@JoinColumn(name="mon_hoc_id"),
             inverseJoinColumns=@JoinColumn(name="giang_vien_id")
     )
-    private List<GiangVienEntity> giangVienEntityList;
+    private List<GiangVienEntity> giangVienList;
 
     @ManyToMany
     @JoinTable (
@@ -67,11 +67,11 @@ public class MonHocEntity {
             joinColumns=@JoinColumn(name="mon_hoc_id"),
             inverseJoinColumns=@JoinColumn(name="chuong_trinh_hoc_id")
     )
-    private List<ChuongTrinhHocEntity> chuongTrinhHocEntityList;
+    private List<ChuongTrinhHocEntity> chuongTrinhHocList;
 
-    @OneToMany(mappedBy = "monHocEntity")
-    private List<LopMonHocEntity> lopMonHocEntityList;
+    @OneToMany(mappedBy = "monHoc")
+    private List<LopMonHocEntity> lopMonHocList;
 
-    @OneToMany(mappedBy = "monHocEntity")
-    private List<KetQuaHocTapEntity> ketQuaHocTapEntityList;
+    @OneToMany(mappedBy = "monHoc")
+    private List<KetQuaHocTapEntity> ketQuaHocTapList;
 }

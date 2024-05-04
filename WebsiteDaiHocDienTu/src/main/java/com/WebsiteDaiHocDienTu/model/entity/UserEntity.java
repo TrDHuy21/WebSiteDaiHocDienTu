@@ -54,11 +54,11 @@ public class UserEntity {
     )
     private List<RoleEntity> roles;
 
-    @OneToOne(mappedBy = "userEntity")
-    private SinhVienEntity sinhVienEntity;
-    @OneToOne(mappedBy = "userEntity")
-    private GiangVienEntity giangVienEntity;
-    @OneToOne(mappedBy = "userEntity")
+    @OneToOne(mappedBy = "user")
+    private SinhVienEntity sinhVien;
+    @OneToOne(mappedBy = "user")
+    private GiangVienEntity giangVien;
+    @OneToOne(mappedBy = "user")
     private QuanLyKhoaEntity quanLyKhoa;
 
 
