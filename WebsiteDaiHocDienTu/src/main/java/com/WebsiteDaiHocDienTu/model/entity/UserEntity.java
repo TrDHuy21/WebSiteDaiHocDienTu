@@ -58,7 +58,7 @@ public class UserEntity {
     private SinhVienEntity sinhVien;
     @OneToOne(mappedBy = "user")
     private GiangVienEntity giangVien;
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user",fetch = FetchType.LAZY)
     private QuanLyKhoaEntity quanLyKhoa;
 
 
