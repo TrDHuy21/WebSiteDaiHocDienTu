@@ -31,6 +31,6 @@ public class LopChinhQuyEntity {
     @JoinColumn(name = "chuong_trinh_hoc_id")
     private ChuongTrinhHocEntity chuongTrinhHoc;
 
-    @OneToMany(mappedBy = "lopChinhQuyEntity")
+    @OneToMany(mappedBy = "lopChinhQuy")
     private List<SinhVienEntity> sinhVienList;
 }
