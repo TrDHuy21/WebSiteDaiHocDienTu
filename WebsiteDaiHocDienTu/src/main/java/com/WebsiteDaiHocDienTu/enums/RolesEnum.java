@@ -2,5 +2,7 @@ package com.WebsiteDaiHocDienTu.enums;
 
 public enum RolesEnum {
     USER,
-    ADMIN
+    ADMIN,
+    QLKHOA,
+    GIANGVIEN
 }
