@@ -27,15 +27,15 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
+//    @Autowired
+//    PasswordEncoder passwordEncoder;
 
     @Override
     public ResponseEntity<?> save(UserDTO userDTO) {
         UserEntity user = DataMapper.toEntity(userDTO,UserEntity.class);
-        RoleEntity role = roleRepository.findByTen(RolesEnum.USER.name()).orElseThrow(()->new NullPointerException("role not found"));
+        RoleEntity role = roleRepository.findByTen(RolesEnum.SV.name()).orElseThrow(()->new NullPointerException("role not found"));
         user.setRoles(List.of(role));
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+//        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setState((byte)1);
         user = userRepository.save(user);
         return ResponseEntity.ok(DataMapper.toDTO(user,UserDTO.class));
