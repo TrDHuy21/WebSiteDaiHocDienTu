@@ -1,16 +1,7 @@
-<nav class="navbar navbar-expand-md bg-dark navbar-dark mb-3"
-     th:fragment="nav_quanLy" xmlns:th="http://www.thymeleaf.org"
+<nav class="nav nav-tabs flex-column"
+     th:fragment="nav_quanly" xmlns:th="http://www.thymeleaf.org"
      xmlns:sec="http://thymeleaf.org/extras/spring-security">
-    <ul class="navbar-nav" sec:authorize="hasRole('ADMIN')">
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/verify-file}">Tài khoản và người dùng</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/generate-key}">Quản lý khoa</a>
-        </li>
-    </ul>
-
-    <ul class="navbar-nav" sec:authorize="hasRole('QLK')">
+    <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link" th:href="@{/verify-file}">Quản lý môn học</a>
         </li>
