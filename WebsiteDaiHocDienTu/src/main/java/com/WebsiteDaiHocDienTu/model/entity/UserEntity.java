@@ -40,7 +40,7 @@ public class UserEntity {
     private Date ngaySinh;
 
     @Column(name = "gioi_tinh")
-    private Boolean gioiTinh;
+    private Byte gioiTinh;
 
     @Column(name = "state")
     private Byte state;
