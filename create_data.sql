@@ -11,9 +11,9 @@
 insert into ttcn_nhom2.role (id, state, ten)
 values 
 	(1, 1, "SV"),
-	(2, 1, "SV"),
-	(3, 1, "SV"),
-	(4, 1, "SV");
+	(2, 1, "GV"),
+	(3, 1, "QLK"),
+	(4, 1, "ADMIN");
 
 -- tạo người dùng
 	
