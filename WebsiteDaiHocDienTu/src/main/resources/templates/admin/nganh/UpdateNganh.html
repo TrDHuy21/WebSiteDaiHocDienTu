@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
 
 <head>
     <!-- Required meta tags -->
@@ -14,32 +15,44 @@
 
 <body>
 <div class="container">
-
-    <h3>Ngành</h3>
-    <hr>
-    <div th:if="${message}" class="success-message">
-        <span th:text="${message}"></span>
+<div th:replace="fragments/header :: header"></div>
+<div class="row" style="border-top-color: var(--bs-yellow);">
+    <div class="col-3">
+        <div sec:authorize="hasAuthority('SV')" th:replace="fragments/nav :: sv"></div>
+        <div sec:authorize="hasAuthority('GV')" th:replace="fragments/nav :: gv"></div>
+        <div sec:authorize="hasAuthority('QLK')" th:replace="fragments/nav :: qlk"></div>
+        <div sec:authorize="hasAuthority('ADMIN')" th:replace="fragments/nav :: admin"></div>
     </div>
-    <p class="h4 mb-4"> Sửa ngành</p>
+    <div class="col" >
+        <!--            content ở đây hú hú-->
 
-    <form action="#" th:action="@{/qlk/quan-ly-nganh/sua-nganh}"
-          th:object="${nganh}" method="post">
+        <h3>Ngành</h3>
+        <hr>
+        <div th:if="${message}" class="success-message">
+            <span th:text="${message}"></span>
+        </div>
+        <p class="h4 mb-4"> Sửa ngành</p>
 
-        <!-- Add hiden form field to handle the update -->
-        <input type="hidden" th:field="*{id}">
+        <form action="#" th:action="@{/qlk/quan-ly-nganh/sua-nganh}"
+              th:object="${nganh}" method="post">
 
-        <input type="text" th:field="*{ten}"
-               class="form-control mb-4 w-25 " placeholder="Tên ngành">
+            <!-- Add hiden form field to handle the update -->
+            <input type="hidden" th:field="*{id}">
 
-        <input type="text" th:field="*{moTa}"
-               class="form-control mb-4 w-25 " placeholder="Mô tả">
+            <input type="text" th:field="*{ten}"
+                   class="form-control mb-4 w-25 " placeholder="Tên ngành">
 
-        <button type="submit" class="btn btn-info col-2">Cập nhật</button>
+            <input type="text" th:field="*{moTa}"
+                   class="form-control mb-4 w-25 " placeholder="Mô tả">
 
-    </form>
+            <button type="submit" class="btn btn-info col-2">Cập nhật</button>
 
-    <hr>
-    <a th:href="@{/qlk/quan-ly-nganh}">Quay trở lại danh sách nganh</a>
+        </form>
+
+        <hr>
+        <a th:href="@{/qlk/quan-ly-nganh}">Quay trở lại danh sách nganh</a>
+    </div>
+</div>
 </div>
 
 </body>
