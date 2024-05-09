@@ -1,5 +1,6 @@
 package com.WebsiteDaiHocDienTu.controller.QuanLyKhoaController;
 
+import com.WebsiteDaiHocDienTu.model.dto.UserDTO;
 import com.WebsiteDaiHocDienTu.model.dto.request.nganh.CreateAndUpdateNganhDTO;
 import com.WebsiteDaiHocDienTu.model.dto.request.nganh.GetListNganhDTO;
 import com.WebsiteDaiHocDienTu.service.NganhService;
@@ -23,12 +24,18 @@ public class NganhController {
     public String getList(Model model){
         Integer userId = SecurityUtils.getPrinciple().getId();
         List<GetListNganhDTO> nganhs = nganhService.findAllByQLK(userId);
+        UserDTO userDTO = SecurityUtils.getPrinciple();
+
+        model.addAttribute("user", userDTO);
         model.addAttribute("nganhs",nganhs);
         return "/admin/nganh/ListNganh";
     }
 
     @GetMapping("/nganh/them-nganh")
     public String viewThemNganh(Model model){
+        UserDTO userDTO = SecurityUtils.getPrinciple();
+
+        model.addAttribute("user", userDTO);
         return "/admin/nganh/createNganh";
     }
 
@@ -50,6 +57,9 @@ public class NganhController {
         try {
             Integer userId = SecurityUtils.getPrinciple().getId();
             CreateAndUpdateNganhDTO nganhDTO = nganhService.findById(userId,id);
+            UserDTO userDTO = SecurityUtils.getPrinciple();
+
+            model.addAttribute("user", userDTO);
             model.addAttribute("nganh",nganhDTO);
         }catch (Exception e){
 

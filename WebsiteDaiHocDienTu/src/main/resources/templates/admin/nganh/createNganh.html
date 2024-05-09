@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
 
 <head>
     <!-- Required meta tags -->
@@ -14,28 +15,39 @@
 
 <body>
 <div class="container">
+    <div th:replace="fragments/header :: header"></div>
+    <div class="row" style="border-top-color: var(--bs-yellow);">
+        <div class="col-3">
+            <div sec:authorize="hasAuthority('SV')" th:replace="fragments/nav :: sv"></div>
+            <div sec:authorize="hasAuthority('GV')" th:replace="fragments/nav :: gv"></div>
+            <div sec:authorize="hasAuthority('QLK')" th:replace="fragments/nav :: qlk"></div>
+            <div sec:authorize="hasAuthority('ADMIN')" th:replace="fragments/nav :: admin"></div>
+        </div>
+        <div class="col" >
+            <!--            content ở đây hú hú-->
+            <h3>Thêm Ngành</h3>
+            <hr>
 
-    <h3>Thêm Ngành</h3>
-    <hr>
+            <p class="h4 mb-4">Thêm Ngành</p>
+            <div th:if="${message}" class="success-message">
+                <span th:text="${message}"></span>
+            </div>
 
-    <p class="h4 mb-4">Thêm Ngành</p>
-    <div th:if="${message}" class="success-message">
-        <span th:text="${message}"></span>
+            <form action="#" th:action="@{/qlk/nganh/them-nganh}" method="post">
+
+                <input type="text" name="ten"
+                       class="form-control mb-4 w-25 " placeholder="Tên Ngành">
+
+                <input type="text" name="moTa"
+                       class="form-control mb-4 w-25 " placeholder="Mô tả">
+                <button type="submit" class="btn btn-info col-2">Lưu ngành</button>
+
+            </form>
+
+            <hr>
+            <a th:href="@{/qlk/quan-ly-nganh}">Quay trở lại danh sách nganh</a>
+        </div>
     </div>
-
-    <form action="#" th:action="@{/qlk/nganh/them-nganh}" method="post">
-
-        <input type="text" name="ten"
-               class="form-control mb-4 w-25 " placeholder="Tên Ngành">
-
-        <input type="text" name="moTa"
-               class="form-control mb-4 w-25 " placeholder="Mô tả">
-        <button type="submit" class="btn btn-info col-2">Lưu ngành</button>
-
-    </form>
-
-    <hr>
-    <a th:href="@{/qlk/quan-ly-nganh}">Quay trở lại danh sách nganh</a>
 </div>
 
 </body>
