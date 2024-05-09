@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Thêm ngành</title>
+</head>
+
+<body>
+<div class="container">
+
+    <h3>Thêm Ngành</h3>
+    <hr>
+
+    <p class="h4 mb-4">Thêm Ngành</p>
+    <div th:if="${message}" class="success-message">
+        <span th:text="${message}"></span>
+    </div>
+
+    <form action="#" th:action="@{/qlk/nganh/them-nganh}" method="post">
+
+        <input type="text" name="ten"
+               class="form-control mb-4 w-25 " placeholder="Tên Ngành">
+
+        <input type="text" name="moTa"
+               class="form-control mb-4 w-25 " placeholder="Mô tả">
+        <button type="submit" class="btn btn-info col-2">Lưu ngành</button>
+
+    </form>
+
+    <hr>
+    <a th:href="@{/qlk/quan-ly-nganh}">Quay trở lại danh sách nganh</a>
+</div>
+
+</body>
+
+</html>

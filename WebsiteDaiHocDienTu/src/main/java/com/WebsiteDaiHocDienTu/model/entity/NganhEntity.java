@@ -29,7 +29,7 @@ public class NganhEntity {
     @Column(name = "state")
     private  Byte state;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "khoa_id")
     private KhoaEntity khoa;
 

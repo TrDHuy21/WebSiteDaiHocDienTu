@@ -27,56 +27,56 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityWebConfiguration {
 
-//    @Autowired
-//    private UserRepository userRepository;
-//
-//    @Bean
-//    UserDetailsService userDetailsService(){
-//        return (username ->
-//            new CustomUserDetails(userRepository.findOneByUserName(username).orElseThrow(()-> new NullPointerException("User name not fount")))
-//        );
-//    }
-//
-//    @Bean
-//    AuthenticationProvider authenticationProvider(){
-//        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-//        daoAuthenticationProvider.setUserDetailsService(userDetailsService());
-//        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
-//        return daoAuthenticationProvider;
-//    }
-//
-//    @Bean
-//    AuthenticationManager authenticationManager(HttpSecurity httpSecurity) throws Exception {
-//        AuthenticationManagerBuilder authenticationManagerBuilder = httpSecurity.getSharedObject(AuthenticationManagerBuilder.class);
-//        authenticationManagerBuilder.authenticationProvider(authenticationProvider());
-//        return authenticationManagerBuilder.build();
-//    }
-//
-//    @Bean
-//    PasswordEncoder passwordEncoder(){
-//        return new BCryptPasswordEncoder();
-//    }
+    @Autowired
+    private UserRepository userRepository;
 
     @Bean
-    public UserDetailsManager userDetailsManager(DataSource dataSource) {
-        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
-
-        // define query to retrieve a user by username
-        jdbcUserDetailsManager.setUsersByUsernameQuery("" +
-                "select user_name, password, state from user where user_name=?");
-
-        // define query to retrieve the authorities/roles by username
-        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("" +
-                "select user.user_name, role.ten \n" +
-                "from user \n" +
-                "inner join role_user \n" +
-                "on user.id=role_user.user_id \n" +
-                "inner join role \n" +
-                "on role_user.role_id = role.id \n" +
-                "where user_name=?;");
-
-        return  jdbcUserDetailsManager;
+    UserDetailsService userDetailsService(){
+        return (username ->
+            new CustomUserDetails(userRepository.findOneByUserName(username).orElseThrow(()-> new NullPointerException("User name not fount")))
+        );
     }
+
+    @Bean
+    AuthenticationProvider authenticationProvider(){
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        daoAuthenticationProvider.setUserDetailsService(userDetailsService());
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        return daoAuthenticationProvider;
+    }
+
+    @Bean
+    AuthenticationManager authenticationManager(HttpSecurity httpSecurity) throws Exception {
+        AuthenticationManagerBuilder authenticationManagerBuilder = httpSecurity.getSharedObject(AuthenticationManagerBuilder.class);
+        authenticationManagerBuilder.authenticationProvider(authenticationProvider());
+        return authenticationManagerBuilder.build();
+    }
+
+    @Bean
+    PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
+
+//    @Bean
+//    public UserDetailsManager userDetailsManager(DataSource dataSource) {
+//        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+//
+//        // define query to retrieve a user by username
+//        jdbcUserDetailsManager.setUsersByUsernameQuery("" +
+//                "select user_name, password, state from user where user_name=?");
+//
+//        // define query to retrieve the authorities/roles by username
+//        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("" +
+//                "select user.user_name, role.ten \n" +
+//                "from user \n" +
+//                "inner join role_user \n" +
+//                "on user.id=role_user.user_id \n" +
+//                "inner join role \n" +
+//                "on role_user.role_id = role.id \n" +
+//                "where user_name=?;");
+//
+//        return  jdbcUserDetailsManager;
+//    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

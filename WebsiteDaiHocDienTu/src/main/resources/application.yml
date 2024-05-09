@@ -13,27 +13,8 @@ spring:
       hibernate:
         format_sql: true
 
-
-
-    #
-# JDBC properties
-#
-
-#
-# turn off the spring boot banner
-#
-
-
-#
-# reduce logging level. Set loggin level to warn
-#
-#logging.level.root=warn
-
-#
-# show jpa/hibernate logging message
-#
-    # ghi lai cac lenh sql
-#Logging.level.org.hibernate.SQL=trace
-    # ghi lai cac tri trong cau lenh SQL
-#Logging.level.org.hibernate.orm.jdbc.bind=trace
-
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
