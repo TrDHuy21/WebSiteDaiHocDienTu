@@ -12,3 +12,4 @@ DROP SCHEMA IF EXISTS `ttcn_nhom2`;
 
 -- create database
 CREATE SCHEMA `ttcn_nhom2`;
+	
