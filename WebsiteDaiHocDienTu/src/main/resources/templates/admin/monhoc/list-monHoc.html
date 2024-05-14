@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Môn Học</title>
+</head>
+
+<body>
+<!-- Trong file Thymeleaf -->
+<div th:if="${mes}" class="alert alert-info">
+    <p th:text="${mes}"></p>
+</div>
+<div class="container">
+    <div th:replace="fragments/header :: header"></div>
+    <div class="row" style="border-top-color: var(--bs-yellow);">
+        <div class="col-3">
+            <div sec:authorize="hasAuthority('SV')" th:replace="fragments/nav :: sv"></div>
+            <div sec:authorize="hasAuthority('GV')" th:replace="fragments/nav :: gv"></div>
+            <div sec:authorize="hasAuthority('QLK')" th:replace="fragments/nav :: qlk"></div>
+            <div sec:authorize="hasAuthority('ADMIN')" th:replace="fragments/nav :: admin"></div>
+        </div>
+        <div class="col">
+            <h3>Môn học</h3>
+            <hr>
+            <!-- Add a button-->
+            <a th:href="@{/qlk/mon-hoc/formCreate}"
+               class="btn btn-primary btn-sm mb-3">
+                Thêm môn học
+            </a>
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                <tr>
+                    <th>Mã môn học</th>
+                    <th>Tên môn học</th>
+                    <th>Số tín</th>
+                    <th>Trạng thái</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="mh : ${monHocList}">
+
+                    <td th:text="${mh.id}"/>
+                    <td th:text="${mh.ten}"/>
+                    <td th:text="${mh.soTin}"/>
+                    <td th:text="${mh.state}"/>
+                    <td>
+                        <a th:href="@{/qlk/mon-hoc/formUpdate(monHocId = ${mh.id})}"
+                           class="btn btn-info btn-sm">
+                            Update
+                        </a>
+
+                        <!-- Add "Delete" button/link-->
+                        <a th:href="@{/qlk/mon-hoc/delete(monHocId = ${mh.id})}"
+                           class="btn btn-danger btn-sm"
+                           onclick="if(!(confirm('Are you sure you want to delete this employee'))) return false">
+
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+
