@@ -1,6 +1,7 @@
 package com.WebsiteDaiHocDienTu.controller.QuanLyKhoaController;
 
 import com.WebsiteDaiHocDienTu.model.dto.UserDTO;
+import com.WebsiteDaiHocDienTu.model.entity.GiangVienEntity;
 import com.WebsiteDaiHocDienTu.model.entity.MonHocEntity;
 import com.WebsiteDaiHocDienTu.service.MonHocService;
 import com.WebsiteDaiHocDienTu.utils.SecurityUtils;
@@ -15,7 +16,7 @@ import java.util.List;
 @RequestMapping("/qlk/mon-hoc")
 public class MonHocController {
     @Autowired
-    MonHocService monHocService;
+    private MonHocService monHocService;
 
     @GetMapping("")
     public String listMonHoc(Model model) {
@@ -57,8 +58,7 @@ public class MonHocController {
 
     @GetMapping("/formUpdate")
     public String formUpdate(@RequestParam("monHocId") int id, Model model) {
-        UserDTO userDTO = SecurityUtils.getPrinciple();
-        model.addAttribute("user", userDTO);
+        model.addAttribute("user", SecurityUtils.getPrinciple());
 
         MonHocEntity monHocEntity = monHocService.findByIdAndKhoaId(id);
         System.out.println(monHocEntity.getKhoa());
@@ -70,5 +70,35 @@ public class MonHocController {
     public String delete(@RequestParam("monHocId") int id) {
         monHocService.deleteById(id);
         return "redirect:/qlk/mon-hoc";
+    }
+
+    @GetMapping("/giang-vien")
+    public String listGiangVien(@RequestParam("monHocId") int id, Model model) {
+        MonHocEntity monHoc = monHocService.findByIdAndKhoaId(id);
+        List<GiangVienEntity> listGiangVienOfMonHoc = monHoc.getGiangVienList();
+        List<GiangVienEntity> listGiangVienOfKhoa = monHoc.getKhoa().getGiangVienList();
+
+        model.addAttribute("user", SecurityUtils.getPrinciple());
+        model.addAttribute("monHoc", monHoc);
+        model.addAttribute("listGiangVienOfMonHoc", listGiangVienOfMonHoc);
+        model.addAttribute("listGiangVienOfKhoa", listGiangVienOfKhoa);
+        return "admin/monhoc/list-giangVien";
+    }
+
+    @PostMapping("/giang-vien/add")
+    public String addGiangVien(@RequestParam("monHocId") int monHocId,
+                               @RequestParam("giangVienId") String giangVienId,
+                               Model model) {
+        monHocService.addGiangVien(monHocId, giangVienId);
+
+        return "redirect:/qlk/mon-hoc/giang-vien?monHocId=" + monHocId;
+    }
+
+    @GetMapping("/giang-vien/delete")
+    public String deleteGiangVien(@RequestParam("monHocId") int monHocId,
+                                  @RequestParam("giangVienId") String giangVienId) {
+
+        monHocService.deleteGiangVien(monHocId, giangVienId);
+        return "redirect:/qlk/mon-hoc/giang-vien?monHocId=" + monHocId;
     }
 }

@@ -25,41 +25,37 @@
             <div sec:authorize="hasAuthority('ADMIN')" th:replace="fragments/nav :: admin"></div>
         </div>
         <div class="col">
-            <h3>Môn học</h3>
+            <h3 th:text="'Giảng viên phụ trách môn '  +${monHoc.ten}"></h3>
             <hr>
-            <!-- Add a button-->
-            <a th:href="@{/qlk/mon-hoc/formCreate}"
-               class="btn btn-primary btn-sm mb-3">
-                Thêm môn học
-            </a>
+            <span th:text="${listGiangVienOfKhoa.size}"></span><br>
+            <form th:action="@{/qlk/mon-hoc/giang-vien/add}" method="post">
+                <input type="hidden" th:value="${monHoc.id}" name="monHocId">
+                <select name="giangVienId">
+                    <option th:each="gv : ${listGiangVienOfKhoa}"
+                            th:value="${gv.id}"
+                            th:text="${gv.id} +' - ' + ${gv.user.ho} + ' ' +${gv.user.ten}"></option>
+                </select>
+                <button type="submit">Thêm</button>
+            </form>
+
             <table class="table table-bordered table-striped">
                 <thead class="table-dark">
                 <tr>
-                    <th>Mã môn học</th>
-                    <th>Tên môn học</th>
-                    <th>Số tín</th>
-                    <th>Trạng thái</th>
+                    <th>Mã giảng viên</th>
+                    <th>Tên giảng viên</th>
                     <th>Action</th>
                 </tr>
                 </thead>
 
                 <tbody>
-                <tr th:each="mh : ${monHocList}">
+                <tr th:each="gv : ${listGiangVienOfMonHoc}">
 
-                    <td th:text="${mh.id}"/>
-                    <td th:text="${mh.ten}"/>
-                    <td th:text="${mh.soTin}"/>
-                    <td th:text="${mh.state}"/>
+                    <td th:text="${gv.id}"/>
+                    <td th:text="${gv.user.ho} + ' ' + ${gv.user.ten}"/>
                     <td>
-                        <a th:href="@{/qlk/mon-hoc/formUpdate(monHocId = ${mh.id})}"
-                           class="btn btn-info btn-sm">
-                            Update
-                        </a>
-
-                        <!-- Add "Delete" button/link-->
-                        <a th:href="@{/qlk/mon-hoc/delete(monHocId = ${mh.id})}"
+                        <a th:href="@{/qlk/mon-hoc/giang-vien/delete(giangVienId = ${gv.id}, monHocId=${monHoc.id})}"
                            class="btn btn-danger btn-sm"
-                           onclick="if(!(confirm('Are you sure you want to delete this employee'))) return false">
+                           onclick="if(!(confirm('Bạn muốn xóa giảng viên này?'))) return false">
 
                             Delete
                         </a>

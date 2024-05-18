@@ -38,6 +38,10 @@ public class LopMonHocEntity {
     @JoinColumn(name = "mon_hoc_id")
     private MonHocEntity monHoc;
 
+    @ManyToOne
+    @JoinColumn(name = "khoa_id")
+    private KhoaEntity khoa;
+
     @ManyToMany
     @JoinTable (
             name="lopmonhoc_sinhvien",

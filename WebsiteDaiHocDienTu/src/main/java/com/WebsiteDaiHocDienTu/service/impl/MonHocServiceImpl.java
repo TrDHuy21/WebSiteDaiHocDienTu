@@ -1,7 +1,9 @@
 package com.WebsiteDaiHocDienTu.service.impl;
 
+import com.WebsiteDaiHocDienTu.model.entity.GiangVienEntity;
 import com.WebsiteDaiHocDienTu.model.entity.KhoaEntity;
 import com.WebsiteDaiHocDienTu.model.entity.MonHocEntity;
+import com.WebsiteDaiHocDienTu.respository.GiangVienRepository;
 import com.WebsiteDaiHocDienTu.respository.MonHocRepository;
 import com.WebsiteDaiHocDienTu.respository.QuanLyKhoaRepository;
 import com.WebsiteDaiHocDienTu.service.MonHocService;
@@ -18,6 +20,7 @@ public class MonHocServiceImpl implements MonHocService {
 
     private final QuanLyKhoaRepository quanLyKhoaRepository;
     private final MonHocRepository monHocRepository;
+    private final GiangVienRepository giangVienRepository;
 
     @Override
     public List<MonHocEntity> findAllByQLK() {
@@ -67,4 +70,35 @@ public class MonHocServiceImpl implements MonHocService {
         monHocEntity.setState((byte)0);
         monHocRepository.save(monHocEntity);
     }
+
+    @Override
+    public void addGiangVien(int monHocId, String giangVienId) {
+        Integer idKhoa = quanLyKhoaRepository.findByUserId(SecurityUtils.getPrinciple().getId())
+                .orElseThrow(()-> new NullPointerException("quan ly khoa not found"))
+                .getKhoa()
+                .getId();
+
+        MonHocEntity monHocEntity = monHocRepository.findByIdAndKhoaId(monHocId, idKhoa)
+                .orElseThrow(()-> new NullPointerException("Mon hoc not found"));
+        GiangVienEntity giangVien = giangVienRepository.findById(giangVienId)
+                .orElseThrow(()-> new NullPointerException("Giang vien not found"));
+        monHocEntity.getGiangVienList().add(giangVien);
+        monHocRepository.save(monHocEntity);
+    }
+
+    @Override
+    public void deleteGiangVien(int monHocId, String giangVienId) {
+        Integer idKhoa = quanLyKhoaRepository.findByUserId(SecurityUtils.getPrinciple().getId())
+                .orElseThrow(()-> new NullPointerException("quan ly khoa not found"))
+                .getKhoa()
+                .getId();
+
+        MonHocEntity monHocEntity = monHocRepository.findByIdAndKhoaId(monHocId, idKhoa)
+                .orElseThrow(()-> new NullPointerException("Mon hoc not found"));
+        GiangVienEntity giangVien = giangVienRepository.findById(giangVienId)
+                .orElseThrow(()-> new NullPointerException("Giang vien not found"));
+        monHocEntity.getGiangVienList().remove(giangVien);
+        monHocRepository.save(monHocEntity);
+    }
+
 }
