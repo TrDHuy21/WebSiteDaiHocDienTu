@@ -18,13 +18,16 @@ public class ThoiKhoaBieuEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "so_tiet")
-    private int soTiet;
+    @Column(name = "thu")
+    private Integer thu;
 
     @Column(name = "tiet_bat_dau")
-    private int tietBatDau;
+    private Integer tietBatDau;
 
-    @ManyToOne
+    @Column(name = "so_tiet")
+    private Integer soTiet;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lop_mon_hoc_id")
     private LopMonHocEntity lopMonHoc;
 }

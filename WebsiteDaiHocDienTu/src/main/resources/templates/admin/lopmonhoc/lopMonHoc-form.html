@@ -1,10 +1,155 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Lop</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Lớp Môn học Form</title>
 </head>
+
 <body>
+<div class="container">
+    <div th:replace="fragments/header :: header"></div>
+    <div class="row" style="border-top-color: var(--bs-yellow);">
+        <div class="col-2">
+            <div sec:authorize="hasAuthority('SV')" th:replace="fragments/nav :: sv"></div>
+            <div sec:authorize="hasAuthority('GV')" th:replace="fragments/nav :: gv"></div>
+            <div sec:authorize="hasAuthority('QLK')" th:replace="fragments/nav :: qlk"></div>
+            <div sec:authorize="hasAuthority('ADMIN')" th:replace="fragments/nav :: admin"></div>
+        </div>
+        <div class="col" >
+            <form action="#"
+                  th:action="@{/qlk/lop-mon-hoc/save}"
+                  th:object="${lopMonHoc}" method="post">
+
+                <input type="hidden" th:field="*{id}">
+
+                <h3>Tên lớp</h3>
+                <input type="text"
+                               th:field="*{ten}"
+                               class="form-control mb-4 w-25 " placeholder="Tên môn học">
+                <h3>Môn học</h3>
+                <input th:field="*{monHoc}" type="hidden">
+                <input type="text" name = "newMonHocId" placeholder="Mã môn học">
+                <button name="changeMonHoc" type="submit">
+                    Cập nhật môn học
+                </button>
+                <span th:if="${lopMonHoc.monHoc != null}">
+                    <span th:text="${lopMonHoc.monHoc.ten}"></span>
+                </span>
+                <br>
+                <h3>Ngày bắt đầu</h3>
+                <input type="date" th:field="${lopMonHoc.ngayBatDau}">
+                <br>
+                <h3>Lịch học:</h3>
+                <a th:href="@{/qlk/lop-mon-hoc/thoi-khoa-bieu/add(lopMonHocId = ${lopMonHoc.id})}"
+                   class="btn btn-info btn-sm">
+                    Thêm lịch
+                </a>
+                <table class="table table-striped">
+                    <thead>
+                    <th scope="col">Thứ</th>
+                    <th scope="col">Tiết bắt đầu</th>
+                    <th scope="col">Số tiết</th>
+                    <th scope="col">Action</th>
+                    </thead>
+                    <tbody>
+                    <tr th:each="tkb, i:*{thoiKhoaBieuList}" >
+                        <td>
+                            <input type="hidden" th:field="*{thoiKhoaBieuList[__${i.index}__].id}">
+                            <input type="hidden" th:field="*{thoiKhoaBieuList[__${i.index}__].lopMonHoc}">
+                            <input type="text" th:field="*{thoiKhoaBieuList[__${i.index}__].thu}">
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{thoiKhoaBieuList[__${i.index}__].tietBatDau}">
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{thoiKhoaBieuList[__${i.index}__].soTiet}">
+                        </td>
+                        <td>
+                            <a th:href="@{/qlk/lop-mon-hoc/thoi-khoa-bieu/delete(thoiKhoaBieuId = ${tkb.id}, lopMonHocId = ${lopMonHoc.id})}"
+                               class="btn btn-danger btn-sm"
+                               onclick="if(!(confirm('Bạn muốn xóa lịch viên này?'))) return false">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <br>
+
+                <h3>Giảng viên</h3>
+                <input type="text" name = "newGiangVienId" placeholder="Mã giảng viên">
+                <button name="changeGiangVien" type="submit">
+                    Cập nhật giảng viên
+                </button>
+                <table th:if="${lopMonHoc.giangVien != null}"
+                       class="table table-striped" >
+                    <thead>
+                    <th scope="col">Mã giảng viên</th>
+                    <th scope="col">Tên giảng viên</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <span th:text="${lopMonHoc.giangVien.id}"></span>
+                        </td>
+                        <td>
+                            <span th:text="${lopMonHoc.giangVien.user.ho + ' ' + lopMonHoc.giangVien.user.ten}"></span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+                <h3>Sinh viên</h3>
+                <input type="hidden" th:field="*{sinhVienList}" />
+                <input type="text" name = "newSinhVienId" placeholder="Mã sinh viên">
+                <button name="addSinhVien" type="submit">Thêm sinh viên</button>
+                <table class="table table-striped">
+                    <thead>
+                        <th scope="col">Mã sinh viên</th>
+                        <th scope="col">Tên sinh viên</th>
+                        <th scope="col">Action</th>
+                    </thead>
+                    <tbody>
+                        <tr th:each="sv:${lopMonHoc.sinhVienList}" >
+                            <td>
+                                <span th:text="${sv.id}"></span>
+                            </td>
+                            <td>
+                                <span th:text="${sv.user.ho} + ' '+${sv.user.ten}"></span>
+                            </td>
+                            <td>
+                                <a th:href="@{/qlk/lop-mon-hoc/sinh-vien/delete(sinhVienId = ${sv.id}, lopMonHocId=${lopMonHoc.id})}"
+                                   class="btn btn-danger btn-sm"
+                                   onclick="if(!(confirm('Bạn muốn xóa sinh viên này?'))) return false">
+
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+<!--                <input type="hidden" th:field="*{thoiKhoaBieuList}" >-->
+                <input type="hidden" th:field="*{giangVien}" >
+<!--                <input type="hidden" th:field="*{quaTrinhHocTapList}" >-->
+                <input type="hidden" th:field="*{state}" />
+                <input type="hidden" th:field="*{khoa}" />
+                <button type="submit" name="save" class="btn btn-info col-2">Save</button>
+            </form>
+            <hr>
+            <a th:href="@{/qlk/lop-mon-hoc}">Quay trở lại danh sách môn học</a>
+        </div>
+    </div>
+</div>
 
 </body>
+
 </html>
