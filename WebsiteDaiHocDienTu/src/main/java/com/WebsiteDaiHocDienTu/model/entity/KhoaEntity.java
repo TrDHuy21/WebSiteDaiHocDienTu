@@ -39,5 +39,8 @@ public class KhoaEntity {
     @OneToMany(mappedBy = "khoa")
     private List<MonHocEntity> monHocList;
 
+    @OneToMany(mappedBy = "khoa")
+    private List<LopMonHocEntity> lopMonHocList;
+
 
 }

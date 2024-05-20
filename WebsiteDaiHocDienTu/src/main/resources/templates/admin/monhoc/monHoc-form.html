@@ -68,21 +68,24 @@
                                   class="form-control mb-4 w-25 " >
                 State: <input type="text" th:field="*{state}"
                               class="form-control mb-4 w-25 " placeholder="state">
-
-                <input type="hidden" th:field="*{khoa}" th:value="${monHoc.khoa.id}"/><br>
-                <div th:field="giangVienList" th:each="gv : ${monHoc.giangVienList}">
+                <a th:href="@{/qlk/mon-hoc/giang-vien(monHocId = *{id})}"
+                   class="btn btn-info btn-sm">
+                    Giảng viên phụ trách
+                </a>
+                <ul th:field="giangVienList" th:each="gv : ${monHoc.giangVienList}">
+                    <li th:text="${gv.id} +' - ' + ${gv.user.ho} + ' ' +${gv.user.ten}"></li>
                     <input type="hidden" th:value="${gv.id}"/>
-                </div>
+                </ul>
                 <div th:field="chuongTrinhHocList" th:each="cth : ${monHoc.chuongTrinhHocList}">
-                    <input type="hidden" th:value="${gv.id}"/>
+                    <input type="hidden" th:value="${cth.id}"/>
                 </div>
                 <div th:field="lopMonHocList" th:each="lmh : ${monHoc.lopMonHocList}">
-                    <input type="hidden" th:value="${gv.id}"/>
+                    <input type="hidden" th:value="${lmh.id}"/>
                 </div>
                 <div th:field="ketQuaHocTapList" th:each="kqht : ${monHoc.ketQuaHocTapList}">
-                    <input type="hidden" th:value="${gv.id}"/>
+                    <input type="hidden" th:value="${kqht.id}"/>
                 </div>
-
+                <input type="hidden" th:field="*{khoa}" th:value="${monHoc.khoa.id}"/><br>
                 <button type="submit" class="btn btn-info col-2">Save</button>
             </form>
             <hr>

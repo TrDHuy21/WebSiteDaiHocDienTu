@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `ttcn_nhom2` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `ttcn_nhom2`;
--- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: localhost    Database: ttcn_nhom2
+-- Host: 127.0.0.1    Database: ttcn_nhom2
 -- ------------------------------------------------------
--- Server version	8.0.36
+-- Server version	8.0.34
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -274,7 +274,7 @@ CREATE TABLE `mon_hoc` (
   PRIMARY KEY (`id`),
   KEY `FKmu52ftg6qdrfy0j3oy5w3q6b9` (`khoa_id`),
   CONSTRAINT `FKmu52ftg6qdrfy0j3oy5w3q6b9` FOREIGN KEY (`khoa_id`) REFERENCES `khoa` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -283,6 +283,7 @@ CREATE TABLE `mon_hoc` (
 
 LOCK TABLES `mon_hoc` WRITE;
 /*!40000 ALTER TABLE `mon_hoc` DISABLE KEYS */;
+INSERT INTO `mon_hoc` VALUES (NULL,NULL,NULL,0.5,0.2,0.3,NULL,1,1,3,0,'Lập trình java nâng cao'),(NULL,NULL,NULL,0.6,0.2,0.2,NULL,2,1,3,1,'Trí tuệ nhân tạo'),(NULL,NULL,NULL,1,NULL,NULL,NULL,3,1,3,1,'Thực tập chuyên ngành'),(NULL,NULL,NULL,NULL,NULL,NULL,NULL,6,1,0,0,'alo'),(NULL,NULL,NULL,NULL,NULL,NULL,NULL,7,1,2,0,'thêm lần 1');
 /*!40000 ALTER TABLE `mon_hoc` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -627,4 +628,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-09 13:26:10
+-- Dump completed on 2024-05-15  9:23:08

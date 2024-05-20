@@ -14,4 +14,8 @@ public interface MonHocService {
     MonHocEntity getNewMonHocWithKhoa();
 
     void deleteById(int id);
+
+    void addGiangVien(int monHocId, String giangVienId);
+
+    void deleteGiangVien(int monHocId, String giangVienId);
 }
