@@ -16,62 +16,59 @@
 
 <body>
 <div class="container">
-<div th:replace="fragments/header :: header"></div>
-<div class="row" style="border-top-color: var(--bs-yellow);">
-<div class="col-3">
-    <div sec:authorize="hasAuthority('SV')" th:replace="fragments/nav :: sv"></div>
-    <div sec:authorize="hasAuthority('GV')" th:replace="fragments/nav :: gv"></div>
-    <div sec:authorize="hasAuthority('QLK')" th:replace="fragments/nav :: qlk"></div>
-    <div sec:authorize="hasAuthority('ADMIN')" th:replace="fragments/nav :: admin"></div>
-</div>
-<div class="col">
-    <!--            content ở đây hú hú-->
+    <div th:replace="fragments/header :: header"></div>
+    <div class="row" style="border-top-color: var(--bs-yellow);">
+        <div class="col-3">
+            <div sec:authorize="hasAuthority('SV')" th:replace="fragments/nav :: sv"></div>
+            <div sec:authorize="hasAuthority('GV')" th:replace="fragments/nav :: gv"></div>
+            <div sec:authorize="hasAuthority('QLK')" th:replace="fragments/nav :: qlk"></div>
+            <div sec:authorize="hasAuthority('ADMIN')" th:replace="fragments/nav :: admin"></div>
+        </div>
+        <div class="col">
+            <!--            content ở đây hú hú-->
 
-    <h3>Ngành</h3>
-    <hr>
-    <!-- Add a button-->
-    <a th:href="@{/qlk/nganh/them-nganh}"
-       class="btn btn-primary btn-sm mb-3">
-        Thêm Ngành
-    </a>
-    <table class="table table-bordered table-striped">
-        <thead class="table-dark">
-        <tr>
-            <th>Tên Ngành</th>
-            <th>Mô tả</th>
-            <th>Trạng thái</th>
-            <th>Action</th>
-        </tr>
-        </thead>
+            <h3>Ngành</h3>
+            <hr>
+            <!-- Add a button-->
+            <a th:href="@{/qlk/nganh/them-nganh}"
+               class="btn btn-primary btn-sm mb-3">
+                Thêm Ngành
+            </a>
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                <tr>
+                    <th>Tên Ngành</th>
+                    <th>Mô tả</th>
+                    <th>Trạng thái</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
 
-        <tbody>
-        <tr th:each="nganh : ${nganhs}">
+                <tbody>
+                <tr th:each="nganh : ${nganhs}">
 
-            <td th:text="${nganh.ten}"/>
-            <td th:text="${nganh.moTa}"/>
-            <td th:text="${nganh.state}"/>
-            <td>
-                <a th:href="@{/qlk/quan-ly-nganh/{id}/sua-nganh(id = ${nganh.id})}"
-                   class="btn btn-info btn-sm">
-                    Update
-                </a>
+                    <td th:text="${nganh.ten}"/>
+                    <td th:text="${nganh.moTa}"/>
+                    <td th:text="${nganh.state}"/>
+                    <td>
+                        <a th:href="@{/qlk/quan-ly-nganh/{id}/sua-nganh(id = ${nganh.id})}"
+                           class="btn btn-info btn-sm">
+                            Update
+                        </a>
 
-                <!-- Add "Delete" button/link-->
-                <a th:href="@{/qlk/quan-ly-nganh/{id}/xoa-nganh(id = ${nganh.id})}"
-                   class="btn btn-danger btn-sm"
-                   onclick="if(!(confirm('Are you sure you want to delete this employee'))) return false">
+                        <!-- Add "Delete" button/link-->
+                        <a th:href="@{/qlk/quan-ly-nganh/{id}/xoa-nganh(id = ${nganh.id})}"
+                           class="btn btn-danger btn-sm"
+                           onclick="if(!(confirm('Are you sure you want to delete this employee'))) return false">
 
-                    Delete
-                </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-</div>
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 </body>
 </html>
-
-
-

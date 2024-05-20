@@ -3,6 +3,7 @@ package com.WebsiteDaiHocDienTu.controller.QuanLyKhoaController;
 import com.WebsiteDaiHocDienTu.model.dto.UserDTO;
 import com.WebsiteDaiHocDienTu.model.dto.request.nganh.CreateAndUpdateNganhDTO;
 import com.WebsiteDaiHocDienTu.model.dto.request.nganh.GetListNganhDTO;
+import com.WebsiteDaiHocDienTu.model.dto.request.nganh.GetNganhManagerChuongTrinhHocDTO;
 import com.WebsiteDaiHocDienTu.service.NganhService;
 import com.WebsiteDaiHocDienTu.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,9 @@ public class NganhController {
 
     @GetMapping("/quan-ly-nganh")
     public String getList(Model model){
-        Integer userId = SecurityUtils.getPrinciple().getId();
+        Long userId = SecurityUtils.getPrinciple().getId();
         List<GetListNganhDTO> nganhs = nganhService.findAllByQLK(userId);
         UserDTO userDTO = SecurityUtils.getPrinciple();
-
         model.addAttribute("user", userDTO);
         model.addAttribute("nganhs",nganhs);
         return "/admin/nganh/ListNganh";
@@ -34,14 +34,13 @@ public class NganhController {
     @GetMapping("/nganh/them-nganh")
     public String viewThemNganh(Model model){
         UserDTO userDTO = SecurityUtils.getPrinciple();
-
         model.addAttribute("user", userDTO);
         return "/admin/nganh/createNganh";
     }
 
     @PostMapping("/nganh/them-nganh")
     public String themNganh(Model model, @ModelAttribute CreateAndUpdateNganhDTO nganhDTO){
-        Integer userId = SecurityUtils.getPrinciple().getId();
+        Long userId = SecurityUtils.getPrinciple().getId();
         CreateAndUpdateNganhDTO nganh = null;
         try {
             nganh = nganhService.createNganh(userId,nganhDTO);
@@ -55,7 +54,7 @@ public class NganhController {
     @GetMapping("/quan-ly-nganh/{id}/sua-nganh")
     private String viewSuaNganh(Model model,@PathVariable Integer id){
         try {
-            Integer userId = SecurityUtils.getPrinciple().getId();
+            Long userId = SecurityUtils.getPrinciple().getId();
             CreateAndUpdateNganhDTO nganhDTO = nganhService.findById(userId,id);
             UserDTO userDTO = SecurityUtils.getPrinciple();
 
@@ -69,7 +68,7 @@ public class NganhController {
 
     @PostMapping("/quan-ly-nganh/sua-nganh")
     public String suaNganh(Model model, @ModelAttribute CreateAndUpdateNganhDTO nganhDTO){
-            Integer userId = SecurityUtils.getPrinciple().getId();
+            Long userId = SecurityUtils.getPrinciple().getId();
         try {
             nganhDTO = nganhService.updateNganh(userId,nganhDTO);
             model.addAttribute("message","Sửa ngành thành công");
@@ -78,6 +77,15 @@ public class NganhController {
         }
             model.addAttribute("nganh",nganhDTO);
         return "/admin/nganh/UpdateNganh";
+    }
+
+    @GetMapping("/nganh")
+    public String getNganhToManageChuongTrinhHoc(Model model){
+        UserDTO userDTO = SecurityUtils.getPrinciple();
+        model.addAttribute("user", userDTO);
+        List<GetNganhManagerChuongTrinhHocDTO> nganhs = nganhService.findAllNganhByQLK(userDTO.getId());
+        model.addAttribute("nganhs",nganhs);
+        return "/admin/nganh/ListNganhManageChuongTrinhHoc";
     }
 
 

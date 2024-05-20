@@ -18,7 +18,6 @@ public class HomeController {
     @GetMapping
     public String home(Model model){
         UserDTO userDTO = SecurityUtils.getPrinciple();
-
         model.addAttribute("user", userDTO);
         return "home";
     }

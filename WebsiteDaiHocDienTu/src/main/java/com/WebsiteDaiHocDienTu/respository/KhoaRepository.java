@@ -13,4 +13,10 @@ public interface KhoaRepository extends JpaRepository<KhoaEntity,Integer> {
             "join fetch k.monHocList " +
             "where k.id = :id")
     Optional<KhoaEntity> findKhoaByIdWithmonHocList(@Param("id") Integer id);
+
+    @Query("select k from KhoaEntity k " +
+            "left join QuanLyKhoaEntity q on k.id = q.khoa.id" +
+            " inner join UserEntity  u on q.user.id = u.id where u.id = :id")
+    Optional<KhoaEntity> findByUserId(Long id);
+
 }

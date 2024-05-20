@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface NganhRepository extends JpaRepository<NganhEntity,Integer> {
     List<NganhEntity> findAllByStateAndKhoa_Id(byte state,Integer khoaId);
     Optional<NganhEntity> findByIdAndStateAndKhoaId(Integer nganhId, byte state, Integer khoaId);
+
+    Optional<NganhEntity> findByStateAndKhoa_Id(byte state,Integer khoaId);
 }

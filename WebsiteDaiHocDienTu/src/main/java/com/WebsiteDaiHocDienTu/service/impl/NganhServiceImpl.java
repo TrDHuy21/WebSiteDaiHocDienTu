@@ -3,6 +3,7 @@ package com.WebsiteDaiHocDienTu.service.impl;
 import com.WebsiteDaiHocDienTu.mapper.DataMapper;
 import com.WebsiteDaiHocDienTu.model.dto.request.nganh.CreateAndUpdateNganhDTO;
 import com.WebsiteDaiHocDienTu.model.dto.request.nganh.GetListNganhDTO;
+import com.WebsiteDaiHocDienTu.model.dto.request.nganh.GetNganhManagerChuongTrinhHocDTO;
 import com.WebsiteDaiHocDienTu.model.entity.KhoaEntity;
 import com.WebsiteDaiHocDienTu.model.entity.NganhEntity;
 import com.WebsiteDaiHocDienTu.respository.KhoaRepository;
@@ -24,7 +25,7 @@ public class NganhServiceImpl implements NganhService {
     private final KhoaRepository khoaRepository;
 
     @Override
-    public List<GetListNganhDTO> findAllByQLK(Integer userId) {
+    public List<GetListNganhDTO> findAllByQLK(Long userId) {
         Integer khoaId = quanLyKhoaRepository.findKhoaIdByUserId(userId).orElseThrow(()-> new NullPointerException("quan ly khoa not found"));
         List<NganhEntity> nganhs = nganhRepository.findAllByStateAndKhoa_Id((byte) 1,khoaId);
         List<GetListNganhDTO> listNganh = nganhs.stream().map(nganh -> DataMapper.toDTO(nganh, GetListNganhDTO.class)).collect(Collectors.toList());
@@ -32,7 +33,7 @@ public class NganhServiceImpl implements NganhService {
     }
 
     @Override
-    public CreateAndUpdateNganhDTO createNganh(Integer userId, CreateAndUpdateNganhDTO nganhDTO) {
+    public CreateAndUpdateNganhDTO createNganh(Long userId, CreateAndUpdateNganhDTO nganhDTO) {
         Integer khoaId = quanLyKhoaRepository.findKhoaIdByUserId(userId).orElseThrow(()-> new NullPointerException("quan ly khoa not found"));
         KhoaEntity khoa = khoaRepository.getReferenceById(khoaId);
         NganhEntity nganh = DataMapper.toEntity(nganhDTO,NganhEntity.class);
@@ -43,7 +44,7 @@ public class NganhServiceImpl implements NganhService {
     }
 
     @Override
-    public CreateAndUpdateNganhDTO updateNganh(Integer userId, CreateAndUpdateNganhDTO nganhDTO) {
+    public CreateAndUpdateNganhDTO updateNganh(Long userId, CreateAndUpdateNganhDTO nganhDTO) {
         Integer khoaId = quanLyKhoaRepository.findKhoaIdByUserId(userId).orElseThrow(()-> new NullPointerException("quan ly khoa not found"));
         NganhEntity nganh = nganhRepository.findByIdAndStateAndKhoaId(nganhDTO.getId(),(byte) 1,khoaId).orElseThrow(()-> new NullPointerException("Ngành not found"));
         nganh.setTen(nganhDTO.getTen());
@@ -53,10 +54,17 @@ public class NganhServiceImpl implements NganhService {
     }
 
     @Override
-    public CreateAndUpdateNganhDTO findById(Integer userId, Integer nganhId) {
+    public CreateAndUpdateNganhDTO findById(Long userId, Integer nganhId) {
         Integer khoaId = quanLyKhoaRepository.findKhoaIdByUserId(userId).orElseThrow(()-> new NullPointerException("quan ly khoa not found"));
         NganhEntity nganh = nganhRepository.findByIdAndStateAndKhoaId(nganhId,(byte) 1,khoaId).orElseThrow(()-> new NullPointerException("Ngành not found"));
         return DataMapper.toDTO(nganh,CreateAndUpdateNganhDTO.class);
+    }
+
+    @Override
+    public List<GetNganhManagerChuongTrinhHocDTO> findAllNganhByQLK(Long userId) {
+        Integer khoaId = quanLyKhoaRepository.findKhoaIdByUserId(userId).orElseThrow(()-> new NullPointerException("quan ly khoa not found"));
+        List<NganhEntity> nganhs = nganhRepository.findAllByStateAndKhoa_Id((byte) 1,khoaId);
+        return nganhs.stream().map(nganh -> DataMapper.toDTO(nganh, GetNganhManagerChuongTrinhHocDTO.class)).collect(Collectors.toList());
     }
 
 

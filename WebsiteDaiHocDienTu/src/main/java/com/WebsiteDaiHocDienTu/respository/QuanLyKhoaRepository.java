@@ -11,7 +11,7 @@ public interface QuanLyKhoaRepository extends JpaRepository<QuanLyKhoaEntity,Str
 
 
     @Query("SELECT k.khoa.id FROM QuanLyKhoaEntity k where k.user.id = :userId")
-    Optional<Integer> findKhoaIdByUserId(Integer userId);
+    Optional<Integer> findKhoaIdByUserId(Long userId);
 
-    Optional<QuanLyKhoaEntity> findByUserId(Integer userId);
+    Optional<QuanLyKhoaEntity> findByUserId(Long userId);
 }
