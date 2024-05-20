@@ -12,16 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Controller
-@RequestMapping("/home")
 public class HomeController {
 
-    @GetMapping
+    @GetMapping("/home")
     public String home(Model model){
-        UserDTO userDTO = SecurityUtils.getPrinciple();
-        model.addAttribute("user", userDTO);
+        model.addAttribute("user", SecurityUtils.getPrinciple());
         return "home";
     }
 
-
+    @GetMapping(value = {"", "/"})
+    public String redirectToHome() {
+        return "redirect:/home";
+    }
 
 }
