@@ -44,8 +44,8 @@ public class SinhVienEntity {
     @ManyToMany
     @JoinTable (
             name="lopmonhoc_sinhvien",
-            joinColumns=@JoinColumn(name="sinhvien_id"),
-            inverseJoinColumns=@JoinColumn(name="lopmonhoc_id")
+            joinColumns=@JoinColumn(name="sinh_vien_id"),
+            inverseJoinColumns=@JoinColumn(name="lop_mon_hoc_id")
     )
     private List<LopMonHocEntity> lopMonHocList;
 
