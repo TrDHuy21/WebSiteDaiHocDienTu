@@ -40,8 +40,7 @@ public class MonHocController {
 
     @PostMapping("/save")
     public String saveMonHoc(@ModelAttribute("monHoc") MonHocEntity monHocEntity, Model model) {
-        UserDTO userDTO = SecurityUtils.getPrinciple();
-        model.addAttribute("user", userDTO);
+        model.addAttribute("user", SecurityUtils.getPrinciple());
         System.out.println(monHocEntity.getKhoa().getId());
         try {
             monHocService.save(monHocEntity);
