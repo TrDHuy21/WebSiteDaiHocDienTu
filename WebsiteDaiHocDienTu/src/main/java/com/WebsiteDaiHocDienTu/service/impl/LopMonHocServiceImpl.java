@@ -3,10 +3,12 @@ package com.WebsiteDaiHocDienTu.service.impl;
 import com.WebsiteDaiHocDienTu.model.entity.*;
 import com.WebsiteDaiHocDienTu.respository.*;
 import com.WebsiteDaiHocDienTu.service.LopMonHocService;
+import com.WebsiteDaiHocDienTu.service.QuaTrinhHocTapService;
 import com.WebsiteDaiHocDienTu.utils.SecurityUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,6 +21,9 @@ public class LopMonHocServiceImpl implements LopMonHocService {
     GiangVienRepository giangVienRepository;
     SinhVienRepository sinhVienRepository;
     MonHocRepository monHocRepository;
+    QuaTrinhHocTapRepository quaTrinhHocTapRepository;
+
+    QuaTrinhHocTapService quaTrinhHocTapService;
 
     @Override
     public List<LopMonHocEntity> getAllByQLK() {
@@ -68,16 +73,7 @@ public class LopMonHocServiceImpl implements LopMonHocService {
     public void addSinhVien(LopMonHocEntity lopMonHocEntity, String newSinhVienId) {
         SinhVienEntity sinhVienEntity = sinhVienRepository.findById(newSinhVienId)
                 .orElseThrow(()-> new NullPointerException("Sinh vien not found"));
-        lopMonHocEntity.getSinhVienList().add(sinhVienEntity);
-        lopMonHocRepository.save(lopMonHocEntity);
-    }
-
-    @Override
-    public void deleteSinhVienById(LopMonHocEntity lopMonHocEntity, String sinhVienId) {
-        SinhVienEntity sinhVienEntity = sinhVienRepository.findById(sinhVienId)
-                .orElseThrow(()-> new NullPointerException("Sinh vien not found"));
-        lopMonHocEntity.getSinhVienList().remove(sinhVienEntity);
-        lopMonHocRepository.save(lopMonHocEntity);
+        quaTrinhHocTapService.create(lopMonHocEntity, sinhVienEntity);
     }
 
     @Override
@@ -95,5 +91,10 @@ public class LopMonHocServiceImpl implements LopMonHocService {
                 .getKhoa();
         lopMonHoc.setKhoa(khoa);
         lopMonHocRepository.save(lopMonHoc);
+    }
+
+    @Override
+    public void deleteQuaTrinhHocTapById(int quaTrinhHocTapId) {
+        quaTrinhHocTapRepository.deleteById(quaTrinhHocTapId);
     }
 }

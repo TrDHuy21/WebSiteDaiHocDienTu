@@ -102,16 +102,15 @@ public class LopMonHocController {
         lopMonHocService.deleteById(id);
         return "redirect:/qlk/lop-mon-hoc";
     }
-    @GetMapping("/sinh-vien/delete")
+    @GetMapping("/qua-trinh-hoc-tap/delete")
     public String deleteSinhVien(Model model,
-                                 @RequestParam("sinhVienId") String sinhVienId,
+                                 @RequestParam("quaTrinhHocTapId") int quaTrinhHocTapId,
                                  @ModelAttribute("lopMonHocId") int lopMonHocId) {
 
-        LopMonHocEntity lopMonHocEntity = lopMonHocService.findById(lopMonHocId);
-        lopMonHocService.deleteSinhVienById(lopMonHocEntity, sinhVienId);
+        lopMonHocService.deleteQuaTrinhHocTapById(quaTrinhHocTapId);
 
         model.addAttribute("user", SecurityUtils.getPrinciple());
-        return "redirect:/qlk/lop-mon-hoc/formUpdate?lopMonHocId=" + lopMonHocEntity.getId();
+        return "redirect:/qlk/lop-mon-hoc/formUpdate?lopMonHocId=" + lopMonHocId;
     }
     @GetMapping(value = "/save", params = {"changeMonHoc"})
     public String changeMonHoc(Model model,

@@ -19,9 +19,11 @@ public interface LopMonHocService {
 
     void addSinhVien(LopMonHocEntity lopMonHocEntity, String newSinhVienId);
 
-    void deleteSinhVienById(LopMonHocEntity lopMonHocEntity, String sinhVienId);
+//    void deleteSinhVienById(LopMonHocEntity lopMonHocEntity, String sinhVienId);
 
     void addMonHoc(LopMonHocEntity lopMonHocEntity, int newMonHocId);
 
     void create(LopMonHocEntity lopMonHoc);
+
+    void deleteQuaTrinhHocTapById(int quaTrinhHocTapId);
 }

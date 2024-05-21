@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
     <title>Lớp Môn học Form</title>
 </head>
@@ -23,7 +24,7 @@
             <div sec:authorize="hasAuthority('QLK')" th:replace="fragments/nav :: qlk"></div>
             <div sec:authorize="hasAuthority('ADMIN')" th:replace="fragments/nav :: admin"></div>
         </div>
-        <div class="col" >
+        <div class="col">
             <form action="#"
                   th:action="@{/qlk/lop-mon-hoc/save}"
                   th:object="${lopMonHoc}" method="post">
@@ -32,11 +33,11 @@
 
                 <h3>Tên lớp</h3>
                 <input type="text"
-                               th:field="*{ten}"
-                               class="form-control mb-4 w-25 " placeholder="Tên môn học">
+                       th:field="*{ten}"
+                       class="form-control mb-4 w-25 " placeholder="Tên môn học">
                 <h3>Môn học</h3>
                 <input th:field="*{monHoc}" type="hidden">
-                <input type="text" name = "newMonHocId" placeholder="Mã môn học">
+                <input type="text" name="newMonHocId" placeholder="Mã môn học">
                 <button name="changeMonHoc" type="submit">
                     Cập nhật môn học
                 </button>
@@ -54,44 +55,42 @@
                 </a>
                 <table class="table table-striped">
                     <thead>
-                    <th scope="col">Thứ</th>
-                    <th scope="col">Tiết bắt đầu</th>
-                    <th scope="col">Số tiết</th>
-                    <th scope="col">Action</th>
+                        <th scope="col">Thứ</th>
+                        <th scope="col">Tiết bắt đầu</th>
+                        <th scope="col">Số tiết</th>
+                        <th scope="col">Action</th>
                     </thead>
                     <tbody>
-                    <tr th:each="tkb, i:*{thoiKhoaBieuList}" >
-                        <td>
-                            <input type="hidden" th:field="*{thoiKhoaBieuList[__${i.index}__].id}">
-                            <input type="hidden" th:field="*{thoiKhoaBieuList[__${i.index}__].lopMonHoc}">
-                            <input type="text" th:field="*{thoiKhoaBieuList[__${i.index}__].thu}">
-                        </td>
-                        <td>
-                            <input type="text" th:field="*{thoiKhoaBieuList[__${i.index}__].tietBatDau}">
-                        </td>
-                        <td>
-                            <input type="text" th:field="*{thoiKhoaBieuList[__${i.index}__].soTiet}">
-                        </td>
-                        <td>
-                            <a th:href="@{/qlk/lop-mon-hoc/thoi-khoa-bieu/delete(thoiKhoaBieuId = ${tkb.id}, lopMonHocId = ${lopMonHoc.id})}"
-                               class="btn btn-danger btn-sm"
-                               onclick="if(!(confirm('Bạn muốn xóa lịch viên này?'))) return false">
-                                Delete
-                            </a>
-                        </td>
-                    </tr>
+                        <tr th:each="tkb, i:*{thoiKhoaBieuList}" >
+                            <td>
+                                <input type="text" th:value="${tkb.thu}">
+                            </td>
+                            <td>
+                                <input type="text" th:value="${tkb.tietBatDau}">
+                            </td>
+                            <td>
+                                <input type="text" th:value="${tkb.soTiet}">
+                            </td>
+                            <td>
+                                <a th:href="@{/qlk/lop-mon-hoc/thoi-khoa-bieu/delete(thoiKhoaBieuId = ${tkb.id}, lopMonHocId = ${lopMonHoc.id})}"
+                                   class="btn btn-danger btn-sm"
+                                   onclick="if(!(confirm('Bạn muốn xóa lịch viên này?'))) return false">
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
 
                 <br>
 
                 <h3>Giảng viên</h3>
-                <input type="text" name = "newGiangVienId" placeholder="Mã giảng viên">
+                <input type="text" name="newGiangVienId" placeholder="Mã giảng viên">
                 <button name="changeGiangVien" type="submit">
                     Cập nhật giảng viên
                 </button>
                 <table th:if="${lopMonHoc.giangVien != null}"
-                       class="table table-striped" >
+                       class="table table-striped">
                     <thead>
                     <th scope="col">Mã giảng viên</th>
                     <th scope="col">Tên giảng viên</th>
@@ -109,39 +108,37 @@
                 </table>
                 <br>
                 <h3>Sinh viên</h3>
-                <input type="hidden" th:field="*{sinhVienList}" />
-                <input type="text" name = "newSinhVienId" placeholder="Mã sinh viên">
+                <input type="text" name="newSinhVienId" placeholder="Mã sinh viên">
                 <button name="addSinhVien" type="submit">Thêm sinh viên</button>
                 <table class="table table-striped">
                     <thead>
-                        <th scope="col">Mã sinh viên</th>
-                        <th scope="col">Tên sinh viên</th>
-                        <th scope="col">Action</th>
+                    <th scope="col">Mã sinh viên</th>
+                    <th scope="col">Tên sinh viên</th>
+                    <th scope="col">Action</th>
                     </thead>
                     <tbody>
-                        <tr th:each="sv:${lopMonHoc.sinhVienList}" >
-                            <td>
-                                <span th:text="${sv.id}"></span>
-                            </td>
-                            <td>
-                                <span th:text="${sv.user.ho} + ' '+${sv.user.ten}"></span>
-                            </td>
-                            <td>
-                                <a th:href="@{/qlk/lop-mon-hoc/sinh-vien/delete(sinhVienId = ${sv.id}, lopMonHocId=${lopMonHoc.id})}"
-                                   class="btn btn-danger btn-sm"
-                                   onclick="if(!(confirm('Bạn muốn xóa sinh viên này?'))) return false">
+                    <tr th:each="qtht:${lopMonHoc.quaTrinhHocTapList}">
+                        <td>
+                            <span th:text="${qtht.sinhVien.id}"></span>
+                        </td>
+                        <td>
+                            <span th:text="${qtht.sinhVien.user.ho} + ' '+${qtht.sinhVien.user.ten}"></span>
+                        </td>
+                        <td>
+                            <a th:href="@{/qlk/lop-mon-hoc/qua-trinh-hoc-tap/delete(quaTrinhHocTapId = ${qtht.id}, lopMonHocId=${lopMonHoc.id})}"
+                               class="btn btn-danger btn-sm" onclick="if(!(confirm('Bạn muốn xóa sinh viên này?'))) return false">
 
-                                    Delete
-                                </a>
-                            </td>
-                        </tr>
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
-<!--                <input type="hidden" th:field="*{thoiKhoaBieuList}" >-->
-                <input type="hidden" th:field="*{giangVien}" >
-<!--                <input type="hidden" th:field="*{quaTrinhHocTapList}" >-->
-                <input type="hidden" th:field="*{state}" />
-                <input type="hidden" th:field="*{khoa}" />
+                <input type="hidden" th:field="*{thoiKhoaBieuList}" >
+                <input type="hidden" th:field="*{quaTrinhHocTapList}" >
+                <input type="hidden" th:field="*{giangVien}">
+                <input type="hidden" th:field="*{state}"/>
+                <input type="hidden" th:field="*{khoa}"/>
                 <button type="submit" name="save" class="btn btn-info col-2">Save</button>
             </form>
             <hr>
