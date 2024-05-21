@@ -41,13 +41,13 @@ public class SinhVienEntity {
     @JoinColumn(name = "lop_chinh_quy_id")
     private LopChinhQuyEntity lopChinhQuy;
 
-    @ManyToMany
-    @JoinTable (
-            name="lopmonhoc_sinhvien",
-            joinColumns=@JoinColumn(name="sinh_vien_id"),
-            inverseJoinColumns=@JoinColumn(name="lop_mon_hoc_id")
-    )
-    private List<LopMonHocEntity> lopMonHocList;
+//    @ManyToMany
+//    @JoinTable (
+//            name="lopmonhoc_sinhvien",
+//            joinColumns=@JoinColumn(name="sinh_vien_id"),
+//            inverseJoinColumns=@JoinColumn(name="lop_mon_hoc_id")
+//    )
+//    private List<LopMonHocEntity> lopMonHocList;
 
     @OneToMany(mappedBy = "sinhVien")
     private List<QuaTrinhHocTapEntity> quaTrinhHocTapList;

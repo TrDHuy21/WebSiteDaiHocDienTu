@@ -28,7 +28,8 @@ public class QuaTrinhHocTapEntity {
     @JoinColumn(name = "lop_mon_hoc_id")
     private LopMonHocEntity lopMonHoc;
 
-    @OneToOne(mappedBy = "quaTrinhHocTap")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ket_qua_hoc_tap_id")
     private KetQuaHocTapEntity ketQuaHocTap;
 
 

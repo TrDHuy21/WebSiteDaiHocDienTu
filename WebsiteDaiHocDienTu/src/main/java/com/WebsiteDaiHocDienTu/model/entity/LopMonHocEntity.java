@@ -44,18 +44,18 @@ public class LopMonHocEntity {
     @JoinColumn(name = "khoa_id")
     private KhoaEntity khoa;
 
-    @ManyToMany
-    @JoinTable (
-            name="lopmonhoc_sinhvien",
-            joinColumns=@JoinColumn(name="lop_mon_hoc_id"),
-            inverseJoinColumns=@JoinColumn(name="sinh_vien_id")
-    )
-    private List<SinhVienEntity> sinhVienList;
+//    @ManyToMany
+//    @JoinTable (
+//            name="lopmonhoc_sinhvien",
+//            joinColumns=@JoinColumn(name="lop_mon_hoc_id"),
+//            inverseJoinColumns=@JoinColumn(name="sinh_vien_id")
+//    )
+//    private List<SinhVienEntity> sinhVienList;
 
     @OneToMany(mappedBy = "lopMonHoc", cascade = CascadeType.ALL)
     private List<ThoiKhoaBieuEntity> thoiKhoaBieuList;
 
-    @OneToMany(mappedBy = "lopMonHoc")
+    @OneToMany(mappedBy = "lopMonHoc", cascade = CascadeType.ALL)
     private List<QuaTrinhHocTapEntity> quaTrinhHocTapList;
 
 }
