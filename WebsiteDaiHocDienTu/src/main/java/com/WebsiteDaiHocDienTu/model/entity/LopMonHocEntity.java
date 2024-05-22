@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.List;
@@ -25,6 +26,7 @@ public class LopMonHocEntity {
     private String ten;
 
     @Column(name = "ngay_bat_dau")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ngayBatDau;
 
     @Column(name = "state")
@@ -42,18 +44,18 @@ public class LopMonHocEntity {
     @JoinColumn(name = "khoa_id")
     private KhoaEntity khoa;
 
-    @ManyToMany
-    @JoinTable (
-            name="lopmonhoc_sinhvien",
-            joinColumns=@JoinColumn(name="lop_mon_hoc_id"),
-            inverseJoinColumns=@JoinColumn(name="sinh_vien_id")
-    )
-    private List<SinhVienEntity> sinhVienList;
+//    @ManyToMany
+//    @JoinTable (
+//            name="lopmonhoc_sinhvien",
+//            joinColumns=@JoinColumn(name="lop_mon_hoc_id"),
+//            inverseJoinColumns=@JoinColumn(name="sinh_vien_id")
+//    )
+//    private List<SinhVienEntity> sinhVienList;
 
-    @OneToMany(mappedBy = "lopMonHoc")
+    @OneToMany(mappedBy = "lopMonHoc", cascade = CascadeType.ALL)
     private List<ThoiKhoaBieuEntity> thoiKhoaBieuList;
 
-    @OneToMany(mappedBy = "lopMonHoc")
+    @OneToMany(mappedBy = "lopMonHoc", cascade = CascadeType.ALL)
     private List<QuaTrinhHocTapEntity> quaTrinhHocTapList;
 
 }

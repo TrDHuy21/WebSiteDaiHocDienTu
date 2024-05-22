@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.NumberFormat;
 
 import java.util.List;
 
@@ -49,11 +50,6 @@ public class KetQuaHocTapEntity {
     @Column(name = "phuc_khao_2")
     private Float phucKhao2;
 
-    @ManyToOne
-    @JoinColumn(name =  "mon_hoc_id")
-    private MonHocEntity monHoc;
-
-    @OneToOne
-    @JoinColumn(name = "qua_trinh_hoc_tap_id")
+    @OneToOne(mappedBy = "ketQuaHocTap")
     private QuaTrinhHocTapEntity quaTrinhHocTap;
 }

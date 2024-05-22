@@ -72,6 +72,4 @@ public class MonHocEntity {
     @OneToMany(mappedBy = "monHoc")
     private List<LopMonHocEntity> lopMonHocList;
 
-    @OneToMany(mappedBy = "monHoc")
-    private List<KetQuaHocTapEntity> ketQuaHocTapList;
 }

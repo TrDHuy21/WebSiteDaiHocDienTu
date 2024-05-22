@@ -17,7 +17,7 @@
 <div class="container">
     <div th:replace="fragments/header :: header"></div>
     <div class="row" style="border-top-color: var(--bs-yellow);">
-        <div class="col-3">
+        <div class="col-2">
             <div sec:authorize="hasAuthority('SV')" th:replace="fragments/nav :: sv"></div>
             <div sec:authorize="hasAuthority('GV')" th:replace="fragments/nav :: gv"></div>
             <div sec:authorize="hasAuthority('QLK')" th:replace="fragments/nav :: qlk"></div>
@@ -72,20 +72,54 @@
                    class="btn btn-info btn-sm">
                     Giảng viên phụ trách
                 </a>
-                <ul th:field="giangVienList" th:each="gv : ${monHoc.giangVienList}">
-                    <li th:text="${gv.id} +' - ' + ${gv.user.ho} + ' ' +${gv.user.ten}"></li>
-                    <input type="hidden" th:value="${gv.id}"/>
-                </ul>
-                <div th:field="chuongTrinhHocList" th:each="cth : ${monHoc.chuongTrinhHocList}">
-                    <input type="hidden" th:value="${cth.id}"/>
+<!--                <table>-->
+<!--                    <thead>-->
+<!--                        <th>Mã giảng viên</th>-->
+<!--                        <th>Tên giảng viên</th>-->
+<!--                    </thead>-->
+<!--                    <tbody th:field="*{giangVienList}">-->
+<!--                        <tr th:each="gv : ${monHoc.giangVienList}" >-->
+<!--                            <td th:text="${gv.id}"></td>-->
+<!--                            <td th:text="${gv.user.ho} + ' ' + ${gv.user.ten}"></td>-->
+<!--                            <input type="hidden" th:value="${gv.id}"/>-->
+<!--                        </tr>-->
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--                -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+<!--                <ul>-->
+<!--                    <li th:each="gv : ${monHoc.giangVienList}"-->
+<!--                        th:text="${gv.id} +' - ' + ${gv.user.ho} + ' ' +${gv.user.ten}">-->
+<!--                        <input th:field="${giangVienList}" type="hidden" th:value="${gv.id}"/>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--                -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+                <div>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Mã giảng viên</th>
+                            <th>Tên giảng viên</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="gv: *{giangVienList}">
+                            <td>
+                                <span th:text="${gv.id}"></span>
+                            </td>
+                            <td>
+                                <span th:text="${gv.user.ho} + ' '+${gv.user.ten}"></span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div th:field="lopMonHocList" th:each="lmh : ${monHoc.lopMonHocList}">
-                    <input type="hidden" th:value="${lmh.id}"/>
-                </div>
-                <div th:field="ketQuaHocTapList" th:each="kqht : ${monHoc.ketQuaHocTapList}">
-                    <input type="hidden" th:value="${kqht.id}"/>
-                </div>
-                <input type="hidden" th:field="*{khoa}" th:value="${monHoc.khoa.id}"/><br>
+                <input type="hidden" th:field="*{giangVienList}" />
+                <input type="hidden" th:field="*{chuongTrinhHocList}" />
+                <input type="hidden" th:field="*{lopMonHocList}" />
+                <input type="hidden" th:field="*{ketQuaHocTapList}" />
+                <input type="hidden" th:field="*{khoa}" />
+
                 <button type="submit" class="btn btn-info col-2">Save</button>
             </form>
             <hr>

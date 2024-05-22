@@ -18,7 +18,7 @@
 <div class="container">
     <div th:replace="fragments/header :: header"></div>
     <div class="row" style="border-top-color: var(--bs-yellow);">
-        <div class="col-3">
+        <div class="col-2">
             <div sec:authorize="hasAuthority('SV')" th:replace="fragments/nav :: sv"></div>
             <div sec:authorize="hasAuthority('GV')" th:replace="fragments/nav :: gv"></div>
             <div sec:authorize="hasAuthority('QLK')" th:replace="fragments/nav :: qlk"></div>
@@ -46,10 +46,10 @@
                 <tbody>
                 <tr th:each="mh : ${monHocList}">
 
-                    <td th:text="${mh.id}"/>
-                    <td th:text="${mh.ten}"/>
-                    <td th:text="${mh.soTin}"/>
-                    <td th:text="${mh.state}"/>
+                    <td th:text="${mh.id==null?'':mh.id}"/>
+                    <td th:text="${mh.ten==null?'':mh.ten}"/>
+                    <td th:text="${mh.soTin==null?'':mh.soTin}"/>
+                    <td th:text="${mh.state==null?'':mh.state}"/>
                     <td>
                         <a th:href="@{/qlk/mon-hoc/formUpdate(monHocId = ${mh.id})}"
                            class="btn btn-info btn-sm">

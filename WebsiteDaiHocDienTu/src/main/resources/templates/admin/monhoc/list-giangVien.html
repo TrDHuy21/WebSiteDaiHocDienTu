@@ -18,7 +18,7 @@
 <div class="container">
     <div th:replace="fragments/header :: header"></div>
     <div class="row" style="border-top-color: var(--bs-yellow);">
-        <div class="col-3">
+        <div class="col-2">
             <div sec:authorize="hasAuthority('SV')" th:replace="fragments/nav :: sv"></div>
             <div sec:authorize="hasAuthority('GV')" th:replace="fragments/nav :: gv"></div>
             <div sec:authorize="hasAuthority('QLK')" th:replace="fragments/nav :: qlk"></div>
