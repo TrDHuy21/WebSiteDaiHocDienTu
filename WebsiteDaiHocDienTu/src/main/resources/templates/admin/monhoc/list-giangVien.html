@@ -27,7 +27,6 @@
         <div class="col">
             <h3 th:text="'Giảng viên phụ trách môn '  +${monHoc.ten}"></h3>
             <hr>
-            <span th:text="${listGiangVienOfKhoa.size}"></span><br>
             <form th:action="@{/qlk/mon-hoc/giang-vien/add}" method="post">
                 <input type="hidden" th:value="${monHoc.id}" name="monHocId">
                 <select name="giangVienId">

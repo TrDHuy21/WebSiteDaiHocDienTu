@@ -27,80 +27,71 @@
             <form action="#"
                   th:action="@{/qlk/mon-hoc/save}"
                   th:object="${monHoc}" method="post">
-
-                <input type="hidden" th:field="*{id}">
-
-                Tên môn học:<input type="text" th:field="*{ten}"
-                       class="form-control mb-4 w-25 " placeholder="Tên môn học">
-
-                Số tín: <input type="text" th:field="*{soTin}"
-                       class="form-control mb-4 w-25 " placeholder="Số tín">
-
-                <div class="row">
-                    <div class="col-4">
-                        Hệ số tx1: <input type="text" th:field="*{heSoTx1}"
-                                          class="form-control mb-4" >
-                    </div>
-                    <div class="col-4">
-                        Hệ số tx2: <input type="text" th:field="*{heSoTx2}"
-                                          class="form-control mb-4" >
-                    </div>
-                    <div class="col-4">
-                        Hệ số tx3: <input type="text" th:field="*{heSoTx3}"
-                                          class="form-control mb-4" >
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-4">
-                        Hệ số giữa kì 1: <input type="text" th:field="*{heSoGiuaKi1}"
-                                                class="form-control mb-4 " >
-                    </div>
-                    <div class="col-4">
-                        Hệ số giữa kì 2: <input type="text" th:field="*{heSoGiuaKi2}"
-                                                class="form-control mb-4 " >
-                    </div>
-                    <div class="col-4">
-                        Hệ số giữa kì 3: <input type="text" th:field="*{heSoGiuaKi3}"
-                                                class="form-control mb-4 " >
-                    </div>
-                </div>
-                Hệ số thi: <input type="text" th:field="*{heSoThi}"
-                                  class="form-control mb-4 w-25 " >
-                State: <input type="text" th:field="*{state}"
-                              class="form-control mb-4 w-25 " placeholder="state">
-                <a th:href="@{/qlk/mon-hoc/giang-vien(monHocId = *{id})}"
-                   class="btn btn-info btn-sm">
-                    Giảng viên phụ trách
-                </a>
-<!--                <table>-->
-<!--                    <thead>-->
-<!--                        <th>Mã giảng viên</th>-->
-<!--                        <th>Tên giảng viên</th>-->
-<!--                    </thead>-->
-<!--                    <tbody th:field="*{giangVienList}">-->
-<!--                        <tr th:each="gv : ${monHoc.giangVienList}" >-->
-<!--                            <td th:text="${gv.id}"></td>-->
-<!--                            <td th:text="${gv.user.ho} + ' ' + ${gv.user.ten}"></td>-->
-<!--                            <input type="hidden" th:value="${gv.id}"/>-->
-<!--                        </tr>-->
-<!--                    </tbody>-->
-<!--                </table>-->
-<!--                -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
-<!--                <ul>-->
-<!--                    <li th:each="gv : ${monHoc.giangVienList}"-->
-<!--                        th:text="${gv.id} +' - ' + ${gv.user.ho} + ' ' +${gv.user.ten}">-->
-<!--                        <input th:field="${giangVienList}" type="hidden" th:value="${gv.id}"/>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--                -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
-                <div>
-                    <table>
+            <table>
+                <tbody>
+                <tr>
+                    <td>Tên môn học</td>
+                    <td><input type="text" th:field="*{ten}"
+                               class="form-control mb-4 w-25 " placeholder="Tên môn học"></td>
+                </tr>
+                <tr>
+                    <td>Số tín</td>
+                    <td><input type="text" th:field="*{soTin}"
+                               class="form-control mb-4 w-25 " placeholder="Số tín"></td>
+                </tr>
+                <tr>
+                    <td>Hệ số điểm:</td>
+                    <td>
+                        <table class="table table-striped">
+                            <thead>
+                            <th scope="col">Thường xuyên 1</th>
+                            <th scope="col">Thường xuyên 2</th>
+                            <th scope="col">Thường xuyên 3</th>
+                            <th scope="col">Giữa kỳ 1</th>
+                            <th scope="col">Giữa kỳ 2</th>
+                            <th scope="col">Giữa kỳ 3</th>
+                            <th scope="col">Điểm thi</th>
+                            </thead>
+                            <tbody>
+                            <td><input type="text" th:field="*{heSoTx1}"
+                                       class="form-control mb-4" >
+                            </td>
+                            <td><input type="text" th:field="*{heSoTx2}"
+                                       class="form-control mb-4" >
+                            </td>
+                            <td><input type="text" th:field="*{heSoTx3}"
+                                       class="form-control mb-4" >
+                            </td>
+                            <td><input type="text" th:field="*{heSoGiuaKi1}"
+                                       class="form-control mb-4" >
+                            </td>
+                            <td><input type="text" th:field="*{heSoGiuaKi2}"
+                                       class="form-control mb-4" >
+                            </td>
+                            <td><input type="text" th:field="*{heSoGiuaKi3}"
+                                       class="form-control mb-4" >
+                            </td>
+                            <td><input type="text" th:field="*{heSoThi}"
+                                       class="form-control mb-4" >
+                            </td>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>State</td>
+                    <td><input type="text" th:field="*{state}"
+                               class="form-control mb-4 w-25 " placeholder="state"></td>
+                </tr>
+                <tr>
+                    <td><a th:href="@{/qlk/mon-hoc/giang-vien(monHocId = *{id})}"
+                           class="btn btn-info btn-sm">
+                        Giảng viên phụ trách
+                    </a></td>
+                    <td><table class="table table-striped">
                         <thead>
-                        <tr>
-                            <th>Mã giảng viên</th>
-                            <th>Tên giảng viên</th>
-
-                        </tr>
+                        <th scope="col">Mã giảng viên</th>
+                        <th scope="col">Tên giảng viên</th>
                         </thead>
                         <tbody>
                         <tr th:each="gv: *{giangVienList}">
@@ -112,13 +103,16 @@
                             </td>
                         </tr>
                         </tbody>
-                    </table>
-                </div>
+                    </table></td>
+                </tr>
+                <input type="hidden" th:field="*{id}">
                 <input type="hidden" th:field="*{giangVienList}" />
                 <input type="hidden" th:field="*{chuongTrinhHocList}" />
                 <input type="hidden" th:field="*{lopMonHocList}" />
-                <input type="hidden" th:field="*{ketQuaHocTapList}" />
                 <input type="hidden" th:field="*{khoa}" />
+                </tbody>
+            </table>
+
 
                 <button type="submit" class="btn btn-info col-2">Save</button>
             </form>
