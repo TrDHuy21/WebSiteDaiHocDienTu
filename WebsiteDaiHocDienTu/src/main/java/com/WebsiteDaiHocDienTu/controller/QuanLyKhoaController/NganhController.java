@@ -41,6 +41,8 @@ public class NganhController {
     @PostMapping("/nganh/them-nganh")
     public String themNganh(Model model, @ModelAttribute CreateAndUpdateNganhDTO nganhDTO){
         Long userId = SecurityUtils.getPrinciple().getId();
+        UserDTO userDTO = SecurityUtils.getPrinciple();
+        model.addAttribute("user", userDTO);
         CreateAndUpdateNganhDTO nganh = null;
         try {
             nganh = nganhService.createNganh(userId,nganhDTO);
@@ -69,6 +71,8 @@ public class NganhController {
     @PostMapping("/quan-ly-nganh/sua-nganh")
     public String suaNganh(Model model, @ModelAttribute CreateAndUpdateNganhDTO nganhDTO){
             Long userId = SecurityUtils.getPrinciple().getId();
+           UserDTO userDTO = SecurityUtils.getPrinciple();
+           model.addAttribute("user", userDTO);
         try {
             nganhDTO = nganhService.updateNganh(userId,nganhDTO);
             model.addAttribute("message","Sửa ngành thành công");
