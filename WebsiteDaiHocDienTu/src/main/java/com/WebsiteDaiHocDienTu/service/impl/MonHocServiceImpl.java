@@ -67,8 +67,8 @@ public class MonHocServiceImpl implements MonHocService {
                 .getId();
         MonHocEntity monHocEntity = monHocRepository.findByIdAndKhoaId(id, idKhoa)
                 .orElseThrow(()-> new NullPointerException("Mon hoc not found"));
-        monHocEntity.setState((byte)0);
-        monHocRepository.save(monHocEntity);
+//        monHocEntity.setState((byte)0);
+        monHocRepository.delete(monHocEntity);
     }
 
     @Override
