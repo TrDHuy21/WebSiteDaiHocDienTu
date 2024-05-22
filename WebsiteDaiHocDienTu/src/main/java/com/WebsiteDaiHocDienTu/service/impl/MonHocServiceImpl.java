@@ -1,8 +1,12 @@
 package com.WebsiteDaiHocDienTu.service.impl;
 
+import com.WebsiteDaiHocDienTu.mapper.DataMapper;
+import com.WebsiteDaiHocDienTu.model.dto.request.monhoc.AddMonHocForChuongTrinhHoc;
+import com.WebsiteDaiHocDienTu.model.entity.ChuongTrinhHocEntity;
 import com.WebsiteDaiHocDienTu.model.entity.GiangVienEntity;
 import com.WebsiteDaiHocDienTu.model.entity.KhoaEntity;
 import com.WebsiteDaiHocDienTu.model.entity.MonHocEntity;
+import com.WebsiteDaiHocDienTu.respository.ChuongTrinhHocRepository;
 import com.WebsiteDaiHocDienTu.respository.GiangVienRepository;
 import com.WebsiteDaiHocDienTu.respository.MonHocRepository;
 import com.WebsiteDaiHocDienTu.respository.QuanLyKhoaRepository;
@@ -12,6 +16,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -21,6 +26,7 @@ public class MonHocServiceImpl implements MonHocService {
     private final QuanLyKhoaRepository quanLyKhoaRepository;
     private final MonHocRepository monHocRepository;
     private final GiangVienRepository giangVienRepository;
+    private final ChuongTrinhHocRepository chuongTrinhHocRepository;
 
     @Override
     public List<MonHocEntity> findAllByQLK() {
@@ -99,6 +105,36 @@ public class MonHocServiceImpl implements MonHocService {
                 .orElseThrow(()-> new NullPointerException("Giang vien not found"));
         monHocEntity.getGiangVienList().remove(giangVien);
         monHocRepository.save(monHocEntity);
+    }
+
+    @Override
+    public List<AddMonHocForChuongTrinhHoc> findAllByMonHocIdNotIn(Integer chuongTrinhHocId) {
+        Integer idKhoa = quanLyKhoaRepository.findByUserId(SecurityUtils.getPrinciple().getId())
+                .orElseThrow(()-> new NullPointerException("quan ly khoa not found"))
+                .getKhoa()
+                .getId();
+        ChuongTrinhHocEntity chuongTrinhHocEntities = chuongTrinhHocRepository.getReferenceById(chuongTrinhHocId);
+        List<Integer> mIds = chuongTrinhHocEntities.getMonHocList().stream().map(MonHocEntity::getId).toList();
+        List<MonHocEntity> monHocEntities = monHocRepository.findAllByIdNotInAndStateAndKhoa_Id(mIds,(byte)1,idKhoa);
+        if(!monHocEntities.isEmpty()){
+            return monHocEntities.stream().map(entity-> DataMapper.toDTO(entity,AddMonHocForChuongTrinhHoc.class)).toList();
+        }
+        return null;
+    }
+
+    @Override
+    public List<AddMonHocForChuongTrinhHoc> findAllByMonHocIn(Integer chuongTrinhHocId) {
+        Integer idKhoa = quanLyKhoaRepository.findByUserId(SecurityUtils.getPrinciple().getId())
+                .orElseThrow(()-> new NullPointerException("quan ly khoa not found"))
+                .getKhoa()
+                .getId();
+        ChuongTrinhHocEntity chuongTrinhHocEntities = chuongTrinhHocRepository.getReferenceById(chuongTrinhHocId);
+        List<Integer> mIds = chuongTrinhHocEntities.getMonHocList().stream().map(MonHocEntity::getId).toList();
+        List<MonHocEntity> monHocEntities = monHocRepository.findAllByIdInAndStateAndKhoa_Id(mIds,(byte) 1,idKhoa);
+        if(!monHocEntities.isEmpty()){
+            return monHocEntities.stream().map(entity-> DataMapper.toDTO(entity,AddMonHocForChuongTrinhHoc.class)).toList();
+        }
+        return null;
     }
 
 }

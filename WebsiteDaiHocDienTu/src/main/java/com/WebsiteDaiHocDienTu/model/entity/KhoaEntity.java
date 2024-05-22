@@ -11,7 +11,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "khoa")
-@ToString
 public class KhoaEntity {
 
     @Id

@@ -13,4 +13,9 @@ public interface ChuongTrinhHocService {
     AddAndUpdateChuongTrinhHocDTO save(Integer nganhId,AddAndUpdateChuongTrinhHocDTO chuongTrinhHocDTO);
 
     AddAndUpdateChuongTrinhHocDTO findById(Integer id);
+
+    AddAndUpdateChuongTrinhHocDTO addMonHocs(Integer nganhId,Integer chuongTrinhHocId, List<Integer> monHocIds);
+
+    void  removeMonHoc(Integer nganhId,Integer chuongTrinhHocId,List<Integer> monHocIds);
+
 }

@@ -6,12 +6,12 @@ import com.WebsiteDaiHocDienTu.model.dto.request.chuongtrinhhoc.AddAndUpdateChuo
 import com.WebsiteDaiHocDienTu.model.dto.request.chuongtrinhhoc.GetListChuongTrinhHocDTO;
 import com.WebsiteDaiHocDienTu.model.entity.ChuongTrinhHocEntity;
 import com.WebsiteDaiHocDienTu.model.entity.KhoaEntity;
+import com.WebsiteDaiHocDienTu.model.entity.MonHocEntity;
 import com.WebsiteDaiHocDienTu.model.entity.NganhEntity;
-import com.WebsiteDaiHocDienTu.respository.ChuongTrinhHocRepository;
-import com.WebsiteDaiHocDienTu.respository.KhoaRepository;
-import com.WebsiteDaiHocDienTu.respository.NganhRepository;
+import com.WebsiteDaiHocDienTu.respository.*;
 import com.WebsiteDaiHocDienTu.service.ChuongTrinhHocService;
 import com.WebsiteDaiHocDienTu.utils.SecurityUtils;
+import jakarta.transaction.Transactional;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -29,6 +29,8 @@ public class ChuongTrinhHocServiceImpl implements ChuongTrinhHocService
     ChuongTrinhHocRepository chuongTrinhHocRepository;
     NganhRepository nganhRepository;
     KhoaRepository khoaRepository;
+    MonHocRepository monHocRepository;
+    QuanLyKhoaRepository quanLyKhoaRepository;
 
 
     @Override
@@ -62,6 +64,39 @@ public class ChuongTrinhHocServiceImpl implements ChuongTrinhHocService
         }catch (Exception e){
             return null;
         }
+    }
+
+    @Override
+    @Transactional(rollbackOn = Exception.class)
+    public AddAndUpdateChuongTrinhHocDTO addMonHocs(Integer nganhId,Integer chuongTrinhHocId,List<Integer> monHocIds) {
+        Integer idKhoa = quanLyKhoaRepository.findByUserId(SecurityUtils.getPrinciple().getId())
+                .orElseThrow(()-> new NullPointerException("quan ly khoa not found"))
+                .getKhoa()
+                .getId();
+        if (!checkNganh(nganhId)){
+            return null;
+        }
+        ChuongTrinhHocEntity chuongTrinhHocEntity = chuongTrinhHocRepository.getReferenceById(chuongTrinhHocId);
+        List<MonHocEntity> monHocEntities = monHocRepository.findAllByIdInAndStateAndKhoa_Id(monHocIds,(byte) 1,idKhoa);
+        chuongTrinhHocEntity.getMonHocList().addAll(monHocEntities);
+        chuongTrinhHocEntity =  chuongTrinhHocRepository.save(chuongTrinhHocEntity);
+        return DataMapper.toDTO(chuongTrinhHocEntity,AddAndUpdateChuongTrinhHocDTO.class);
+    }
+
+    @Override
+    @Transactional(rollbackOn = Exception.class)
+    public void removeMonHoc(Integer nganhId,Integer chuongTrinhHocId, List<Integer> monHocIds) {
+        Integer idKhoa = quanLyKhoaRepository.findByUserId(SecurityUtils.getPrinciple().getId())
+                .orElseThrow(()-> new NullPointerException("quan ly khoa not found"))
+                .getKhoa()
+                .getId();
+        if (!checkNganh(nganhId)){
+            return;
+        }
+        ChuongTrinhHocEntity chuongTrinhHocEntity = chuongTrinhHocRepository.getReferenceById(chuongTrinhHocId);
+        List<MonHocEntity> monHocEntities = monHocRepository.findAllByIdInAndStateAndKhoa_Id(monHocIds,(byte) 1,idKhoa);
+        chuongTrinhHocEntity.getMonHocList().removeAll(monHocEntities);
+        chuongTrinhHocEntity =  chuongTrinhHocRepository.save(chuongTrinhHocEntity);
     }
 
 

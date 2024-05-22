@@ -3,7 +3,10 @@ package com.WebsiteDaiHocDienTu.controller.QuanLyKhoaController;
 import com.WebsiteDaiHocDienTu.model.dto.UserDTO;
 import com.WebsiteDaiHocDienTu.model.dto.request.chuongtrinhhoc.AddAndUpdateChuongTrinhHocDTO;
 import com.WebsiteDaiHocDienTu.model.dto.request.chuongtrinhhoc.GetListChuongTrinhHocDTO;
+import com.WebsiteDaiHocDienTu.model.dto.request.monhoc.AddMonHocForChuongTrinhHoc;
+import com.WebsiteDaiHocDienTu.model.entity.MonHocEntity;
 import com.WebsiteDaiHocDienTu.service.ChuongTrinhHocService;
+import com.WebsiteDaiHocDienTu.service.MonHocService;
 import com.WebsiteDaiHocDienTu.utils.SecurityUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,9 @@ public class ChuongTrinhHocController {
 
     @Autowired
     private ChuongTrinhHocService chuongTrinhHocService;
+
+    @Autowired
+    MonHocService monHocService;
 
     @GetMapping("{id}/quan-ly-chuong-trinh-hoc")
     public String getList(Model model, HttpServletRequest request, @PathVariable Integer id){
@@ -90,6 +96,29 @@ public class ChuongTrinhHocController {
         return "";
     }
 
+
+    @GetMapping("{nganhId}/quan-ly-chuong-trinh-hoc/{monHocId}/mon-hoc")
+    public String getMonHoc(Model model,HttpServletRequest request,@PathVariable("nganhId") Integer nganhId, @PathVariable("monHocId") Integer cthId){
+        Long userId = SecurityUtils.getPrinciple().getId();
+        UserDTO userDTO = SecurityUtils.getPrinciple();
+        model.addAttribute("user", userDTO);
+        List<AddMonHocForChuongTrinhHoc> monhocs = monHocService.findAllByMonHocIn(cthId);
+        model.addAttribute("monhocs",monhocs);
+        model.addAttribute("uri",request.getRequestURI());
+        return "/admin/chuongtrinhhoc/ListMonHoc";
+    }
+
+    @GetMapping("{nganhId}/quan-ly-chuong-trinh-hoc/{cid}/mon-hoc/them-moi")
+    public String addMonHoc(Model model,HttpServletRequest request,@PathVariable("nganhId") Integer nganhId, @PathVariable("cid") Integer cthId){
+        Long userId = SecurityUtils.getPrinciple().getId();
+        UserDTO userDTO = SecurityUtils.getPrinciple();
+        model.addAttribute("user", userDTO);
+        List<AddMonHocForChuongTrinhHoc> monhocs = monHocService.findAllByMonHocIdNotIn(cthId);
+        model.addAttribute("monhocs",monhocs);
+        model.addAttribute("uri",request.getRequestURI());
+        model.addAttribute("isAdd","true");
+        return "/admin/chuongtrinhhoc/ListMonHoc";
+    }
 
 
 

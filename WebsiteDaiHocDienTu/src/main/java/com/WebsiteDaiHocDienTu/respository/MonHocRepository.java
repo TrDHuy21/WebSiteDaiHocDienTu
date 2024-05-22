@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface MonHocRepository extends JpaRepository<MonHocEntity, Integer> {
     List<MonHocEntity> findAllByKhoa_IdOrderByStateDesc( Integer khoaId);
     Optional<MonHocEntity> findByIdAndKhoaId(Integer monHocId, Integer khoaId);
+    List<MonHocEntity> findAllByIdNotInAndStateAndKhoa_Id(List<Integer> ids,byte state,Integer khoaId);
+    List<MonHocEntity> findAllByIdInAndStateAndKhoa_Id(List<Integer> ids,byte state,Integer khoaId);
 }
