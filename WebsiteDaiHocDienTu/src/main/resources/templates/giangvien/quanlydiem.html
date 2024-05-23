@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Lớp Môn học Form</title>
+</head>
+
+<body>
+<div class="">
+    <div th:replace="fragments/header :: header"></div>
+    <div class="row" style="border-top-color: var(--bs-yellow);">
+        <div class="col-2">
+            <div sec:authorize="hasAuthority('SV')" th:replace="fragments/nav :: sv"></div>
+            <div sec:authorize="hasAuthority('GV')" th:replace="fragments/nav :: gv"></div>
+            <div sec:authorize="hasAuthority('QLK')" th:replace="fragments/nav :: qlk"></div>
+            <div sec:authorize="hasAuthority('ADMIN')" th:replace="fragments/nav :: admin"></div>
+        </div>
+        <div class="col">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td th:text="'Mã lớp: '+${lopMonHoc.id}"></td>
+                </tr>
+                <tr>
+                    <td th:text="'Tên lớp: '+${lopMonHoc.ten}"></td>
+                </tr>
+                <tr>
+                    <td th:text="'Môn học: '+${lopMonHoc.monHoc?.ten}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <br>
+            <form action="#"
+                  th:object="${lopMonHoc}"
+                  th:action="@{/gv/quan-ly-ket-qua-hoc-tap/{id}/save(id=${lopMonHoc.id})}"
+                    method="post">
+
+                <table class="table">
+                    <thead>
+                    <th>Mã sinh viên</th>
+                    <th>Họ Tên</th>
+                    <th>Thường xuyên 1</th>
+                    <th>Thường xuyên 2</th>
+                    <th>Thường xuyên 3</th>
+                    <th>Giữa kì 1</th>
+                    <th>Giữa kì 2</th>
+                    <th>Giữa kì 3</th>
+                    <th>Điêm thi 1</th>
+                    <th>Điêm thi 2</th>
+                    <th>Phúc khảo 1 </th>
+                    <th>Phúc khảo 2</th>
+                    </thead> 
+                    <tbody>
+                    <tr th:each="qkht, i:${ketQuaHocTapList}">
+
+                        <td th:text="${qkht.quaTrinhHocTap.sinhVien.id}"></td>
+                        <td style="width: 200px" th:text="${qkht.quaTrinhHocTap.sinhVien.user.ho}+ '                                       ' +${qkht.quaTrinhHocTap.sinhVien.user.ten}"></td>
+                        <td><input style="width: 40px" type="text" th:field="*{quaTrinhHocTapList[__${i.index}__].ketQuaHocTap.tx1}"></td>
+                        <td><input style="width: 40px" type="text" th:field="*{quaTrinhHocTapList[__${i.index}__].ketQuaHocTap.tx2}"></td>
+                        <td><input style="width: 40px" type="text" th:field="*{quaTrinhHocTapList[__${i.index}__].ketQuaHocTap.tx3}"></td>
+                        <td><input style="width: 40px" type="text" th:field="*{quaTrinhHocTapList[__${i.index}__].ketQuaHocTap.giuaKi1}"></td>
+                        <td><input style="width: 40px" type="text" th:field="*{quaTrinhHocTapList[__${i.index}__].ketQuaHocTap.giuaKi2}"></td>
+                        <td><input style="width: 40px" type="text" th:field="*{quaTrinhHocTapList[__${i.index}__].ketQuaHocTap.giuaKi3}"></td>
+                        <td><input style="width: 40px" type="text" th:field="*{quaTrinhHocTapList[__${i.index}__].ketQuaHocTap.thi1}"></td>
+                        <td><input style="width: 40px" type="text" th:field="*{quaTrinhHocTapList[__${i.index}__].ketQuaHocTap.thi2}"></td>
+                        <td><input style="width: 40px" type="text" th:field="*{quaTrinhHocTapList[__${i.index}__].ketQuaHocTap.phucKhao1}"></td>
+                        <td><input style="width: 40px" type="text" th:field="*{quaTrinhHocTapList[__${i.index}__].ketQuaHocTap.phucKhao2}"></td>
+                        <input type="hidden" th:field="*{quaTrinhHocTapList[__${i.index}__].ketQuaHocTap.id}">
+                    </tr>
+                    </tbody>
+                </table>
+                <button type="submit" name="save" class="btn btn-info col-2">Save</button>
+            </form>
+            <hr>
+            <a th:href="@{/gv/quan-ly-ket-qua-hoc-tap}">Quay trở lại danh sách lơp môn học</a>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
