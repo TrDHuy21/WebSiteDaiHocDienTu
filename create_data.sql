@@ -33,7 +33,7 @@ CREATE TABLE `chuong_trinh_hoc` (
   PRIMARY KEY (`id`),
   KEY `FKa67dcxp4hik3nxqlqgmk410yi` (`nganh_id`),
   CONSTRAINT `FKa67dcxp4hik3nxqlqgmk410yi` FOREIGN KEY (`nganh_id`) REFERENCES `nganh` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +42,7 @@ CREATE TABLE `chuong_trinh_hoc` (
 
 LOCK TABLES `chuong_trinh_hoc` WRITE;
 /*!40000 ALTER TABLE `chuong_trinh_hoc` DISABLE KEYS */;
+INSERT INTO `chuong_trinh_hoc` VALUES (3,1,1,'đổi mới','k16'),(4,1,1,'đổi mới','k16'),(5,1,1,'hello','k19'),(6,1,1,'abc','k18'),(7,1,1,'abc','k18'),(8,1,1,'abcas','k10');
 /*!40000 ALTER TABLE `chuong_trinh_hoc` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -71,7 +72,7 @@ CREATE TABLE `giang_vien` (
 
 LOCK TABLES `giang_vien` WRITE;
 /*!40000 ALTER TABLE `giang_vien` DISABLE KEYS */;
-INSERT INTO `giang_vien` VALUES (1,NULL,2,'GV_00001'),(1,NULL,5,'GV_00002'),(1,NULL,6,'GV_00003'),(1,NULL,7,'GV_00004');
+INSERT INTO `giang_vien` VALUES (1,1,2,'GV_00001'),(1,1,5,'GV_00002'),(1,1,6,'GV_00003'),(1,1,7,'GV_00004'),(1,1,11,'GV_00005'),(1,1,12,'GV_00006'),(1,1,13,'GV_00007'),(1,1,14,'GV_00008'),(1,1,15,'GV_00009'),(2,1,16,'GV_00010'),(2,1,17,'GV_00011'),(4,1,18,'GV_00012'),(4,1,19,'GV_00013'),(5,1,20,'GV_00014'),(5,1,21,'GV_00015'),(3,1,22,'GV_00016'),(3,1,23,'GV_00017'),(3,1,24,'GV_00018'),(4,1,25,'GV_00019'),(5,1,26,'GV_00020');
 /*!40000 ALTER TABLE `giang_vien` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,7 +121,7 @@ CREATE TABLE `ket_qua_hoc_tap` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_rocmfscx9c19y7wuk5v3tt4st` (`qua_trinh_hoc_tap_id`),
   CONSTRAINT `FK5u2hh698ybwjs6nopvwb73p5v` FOREIGN KEY (`qua_trinh_hoc_tap_id`) REFERENCES `qua_trinh_hoc_tap` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,7 +130,7 @@ CREATE TABLE `ket_qua_hoc_tap` (
 
 LOCK TABLES `ket_qua_hoc_tap` WRITE;
 /*!40000 ALTER TABLE `ket_qua_hoc_tap` DISABLE KEYS */;
-INSERT INTO `ket_qua_hoc_tap` VALUES (NULL,NULL,NULL,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(NULL,NULL,NULL,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `ket_qua_hoc_tap` VALUES (NULL,NULL,NULL,2,NULL,NULL,3,NULL,NULL,NULL,NULL,NULL),(NULL,NULL,NULL,3,NULL,NULL,4,NULL,NULL,NULL,NULL,NULL),(9,1,1,4,1,1,5,1,1,1,1,1),(9,1,1,5,1,1,6,1,1,1,1,1),(9,1,1,8,1,1,NULL,1,1,1,1,1),(NULL,NULL,NULL,9,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(NULL,NULL,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(NULL,NULL,NULL,11,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `ket_qua_hoc_tap` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146,16 +147,16 @@ CREATE TABLE `khoa` (
   `mo_ta` varchar(255) DEFAULT NULL,
   `ten` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
--- 
+--
 -- Dumping data for table `khoa`
 --
 
 LOCK TABLES `khoa` WRITE;
 /*!40000 ALTER TABLE `khoa` DISABLE KEYS */;
-INSERT INTO `khoa` VALUES (1,1,'Khoa cong nghe thong tin','CNTT');
+INSERT INTO `khoa` VALUES (1,1,'Khoa cong nghe thong tin','CNTT'),(2,1,'Cơ khí','CK'),(3,1,'Công nghệ Ô tô','CNOT'),(4,1,'Điện','DIEN'),(5,1,'Công nghệ Hoá','CNH'),(6,1,'Kế toán - Kiểm toán.','KTKT');
 /*!40000 ALTER TABLE `khoa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -217,7 +218,7 @@ CREATE TABLE `lop_mon_hoc` (
 
 LOCK TABLES `lop_mon_hoc` WRITE;
 /*!40000 ALTER TABLE `lop_mon_hoc` DISABLE KEYS */;
-INSERT INTO `lop_mon_hoc` VALUES (1,1,1,'2023-12-19 00:00:00.000000','GV_00002','Lập trình java nâng cao 1',1),(2,1,1,'2023-12-20 07:23:30.000000','GV_00001','Lập trình java nâng cao 2',1),(3,2,1,'2023-12-20 07:23:30.000000','GV_00001','Trí tuệ nhân tạo 1',1);
+INSERT INTO `lop_mon_hoc` VALUES (1,1,1,'2023-12-19 00:00:00.000000','GV_00009','Lập trình java nâng cao 1',1),(2,1,1,'2023-12-20 07:23:30.000000','GV_00001','Lập trình java nâng cao 2',1),(3,2,1,'2023-12-20 07:23:30.000000','GV_00001','Trí tuệ nhân tạo 1',1);
 /*!40000 ALTER TABLE `lop_mon_hoc` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -271,7 +272,7 @@ CREATE TABLE `mon_hoc` (
   PRIMARY KEY (`id`),
   KEY `FKmu52ftg6qdrfy0j3oy5w3q6b9` (`khoa_id`),
   CONSTRAINT `FKmu52ftg6qdrfy0j3oy5w3q6b9` FOREIGN KEY (`khoa_id`) REFERENCES `khoa` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -280,7 +281,7 @@ CREATE TABLE `mon_hoc` (
 
 LOCK TABLES `mon_hoc` WRITE;
 /*!40000 ALTER TABLE `mon_hoc` DISABLE KEYS */;
-INSERT INTO `mon_hoc` VALUES (NULL,NULL,NULL,0.5,0.2,0.3,NULL,1,1,3,0,'Lập trình java nâng cao'),(NULL,NULL,NULL,0.6,0.2,0.2,NULL,2,1,3,1,'Trí tuệ nhân tạo'),(NULL,NULL,NULL,1,NULL,NULL,NULL,3,1,3,1,'Thực tập chuyên ngành'),(NULL,NULL,NULL,NULL,NULL,NULL,NULL,6,1,0,0,'alo'),(NULL,NULL,NULL,NULL,NULL,NULL,NULL,7,1,2,0,'thêm lần 1');
+INSERT INTO `mon_hoc` VALUES (NULL,NULL,NULL,0.5,0.2,0.3,NULL,1,1,3,1,'Lập trình java nâng cao'),(NULL,NULL,NULL,0.6,0.2,0.2,NULL,2,1,3,1,'Trí tuệ nhân tạo'),(NULL,NULL,NULL,1,NULL,NULL,NULL,3,1,3,1,'Thực tập chuyên ngành'),(NULL,NULL,NULL,0.7,0.15,0.15,NULL,8,1,3,1,'Nhập môn lập trình máy tính');
 /*!40000 ALTER TABLE `mon_hoc` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -333,7 +334,7 @@ CREATE TABLE `monhoc_giangvien` (
 
 LOCK TABLES `monhoc_giangvien` WRITE;
 /*!40000 ALTER TABLE `monhoc_giangvien` DISABLE KEYS */;
-INSERT INTO `monhoc_giangvien` VALUES (2,'GV_00001'),(2,'GV_00001');
+INSERT INTO `monhoc_giangvien` VALUES (2,'GV_00001'),(1,'GV_00001'),(1,'GV_00009'),(1,'GV_00005');
 /*!40000 ALTER TABLE `monhoc_giangvien` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -408,7 +409,7 @@ CREATE TABLE `qua_trinh_hoc_tap` (
   CONSTRAINT `FKc166aymklimpoghs8pma92cjf` FOREIGN KEY (`ket_qua_hoc_tap_id`) REFERENCES `ket_qua_hoc_tap` (`id`),
   CONSTRAINT `FKdrsx4wp1ivbd60k6nl8x2regk` FOREIGN KEY (`lop_mon_hoc_id`) REFERENCES `lop_mon_hoc` (`id`),
   CONSTRAINT `FKjfa4jnwi21gwobpr2wqoeel4e` FOREIGN KEY (`sinh_vien_id`) REFERENCES `sinh_vien` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -417,7 +418,7 @@ CREATE TABLE `qua_trinh_hoc_tap` (
 
 LOCK TABLES `qua_trinh_hoc_tap` WRITE;
 /*!40000 ALTER TABLE `qua_trinh_hoc_tap` DISABLE KEYS */;
-INSERT INTO `qua_trinh_hoc_tap` VALUES (3,1,0,'SV_00002',2),(4,1,0,'SV_00003',3);
+INSERT INTO `qua_trinh_hoc_tap` VALUES (3,1,0,'SV_00002',2),(4,1,0,'SV_00003',3),(5,2,0,'SV_00001',4),(6,NULL,0,'SV_00002',5),(7,1,0,'SV_00004',9),(8,1,0,'SV_00005',10),(9,1,0,'SV_00010',11);
 /*!40000 ALTER TABLE `qua_trinh_hoc_tap` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -529,7 +530,7 @@ CREATE TABLE `sinh_vien` (
 
 LOCK TABLES `sinh_vien` WRITE;
 /*!40000 ALTER TABLE `sinh_vien` DISABLE KEYS */;
-INSERT INTO `sinh_vien` VALUES (NULL,NULL,1,'SV_00001'),(NULL,NULL,8,'SV_00002'),(NULL,NULL,9,'SV_00003'),(NULL,NULL,10,'SV_00004');
+INSERT INTO `sinh_vien` VALUES (NULL,NULL,1,'SV_00001'),(NULL,NULL,8,'SV_00002'),(NULL,NULL,9,'SV_00003'),(NULL,NULL,10,'SV_00004'),(NULL,NULL,27,'SV_00005'),(NULL,NULL,28,'SV_00006'),(NULL,NULL,29,'SV_00007'),(NULL,NULL,30,'SV_00008'),(NULL,NULL,31,'SV_00009'),(NULL,NULL,32,'SV_00010'),(NULL,NULL,33,'SV_00011'),(NULL,NULL,34,'SV_00012'),(NULL,NULL,35,'SV_00013'),(NULL,NULL,36,'SV_00014'),(NULL,NULL,37,'SV_00015'),(NULL,NULL,38,'SV_00016'),(NULL,NULL,39,'SV_00017'),(NULL,NULL,40,'SV_00018'),(NULL,NULL,41,'SV_00019'),(NULL,NULL,42,'SV_00020');
 /*!40000 ALTER TABLE `sinh_vien` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -571,7 +572,7 @@ CREATE TABLE `thoi_khoa_bieu` (
   PRIMARY KEY (`id`),
   KEY `FKi3rhw9e1tyfq9vn8io0bvo5nx` (`lop_mon_hoc_id`),
   CONSTRAINT `FKi3rhw9e1tyfq9vn8io0bvo5nx` FOREIGN KEY (`lop_mon_hoc_id`) REFERENCES `lop_mon_hoc` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -602,7 +603,7 @@ CREATE TABLE `user` (
   `ten` varchar(255) DEFAULT NULL,
   `user_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -611,7 +612,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (NULL,1,1,NULL,NULL,'Duc','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Huy','SV_00001'),(NULL,1,2,NULL,NULL,'Thien','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Lam','GV_00001'),(NULL,1,3,NULL,NULL,'Minh','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Tien','QLK_00001'),(NULL,1,4,NULL,NULL,'Quang','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Minh','admin'),(NULL,1,5,NULL,NULL,'Thien','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Lam 2','GV_00002'),(NULL,1,6,NULL,NULL,'Thien','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Lam 3','GV_00003'),(NULL,1,7,NULL,NULL,'Thien','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Lam 4','GV_00004'),(NULL,NULL,8,NULL,NULL,'Duc','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Huy 1','SV_00002'),(NULL,NULL,9,NULL,NULL,'Duc','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Huy 2','SV_00003'),(NULL,NULL,10,NULL,NULL,'Duc','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Huy 3','SV_00004');
+INSERT INTO `user` VALUES (NULL,1,1,NULL,NULL,'Duc','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Huy','SV_00001'),(NULL,1,2,NULL,NULL,'Thien','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Lam','GV_00001'),(NULL,1,3,NULL,NULL,'Minh','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Tien','QLK_00001'),(NULL,1,4,NULL,NULL,'Quang','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Minh','admin'),(NULL,1,5,NULL,NULL,'Thien','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Lam 2','GV_00002'),(NULL,1,6,NULL,NULL,'Thien','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Lam 3','GV_00003'),(NULL,1,7,NULL,NULL,'Thien','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Lam 4','GV_00004'),(NULL,1,8,NULL,NULL,'Duc','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Huy 1','SV_00002'),(NULL,1,9,NULL,NULL,'Duc','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Huy 2','SV_00003'),(NULL,1,10,NULL,NULL,'Duc','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Huy 3','SV_00004'),(NULL,1,11,NULL,NULL,'Bùi Đức','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Anh','GV_00005'),(NULL,1,12,NULL,NULL,'Trần Anh','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Đức','GV_00006'),(NULL,1,13,NULL,NULL,'Quán Xuân','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Đương','GV_00007'),(NULL,1,14,NULL,NULL,'Hà Văn','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Hậu','GV_00008'),(NULL,1,15,NULL,NULL,'Đinh Đức','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Hiếu','GV_00009'),(NULL,1,16,NULL,NULL,'Nông Minh','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Hiếu','GV_00010'),(NULL,1,17,NULL,NULL,'Đoàn Gia','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Hòa','GV_00011'),(NULL,1,18,NULL,NULL,'Nguyễn Thu','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Hoài','GV_00012'),(NULL,1,19,NULL,NULL,'Đặng Thế','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Hoàn','GV_00013'),(NULL,1,20,NULL,NULL,'Đào Trọng','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Hoàn','GV_00014'),(NULL,1,21,NULL,NULL,'Đỗ Huy','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Hoàng','GV_00015'),(NULL,1,22,NULL,NULL,'Trịnh Minh','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Hoàng','GV_00016'),(NULL,1,23,NULL,NULL,'Trương Việt','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Hoàng','GV_00017'),(NULL,1,24,NULL,NULL,'Nguyễn Trọng','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Hùng','GV_00018'),(NULL,1,25,NULL,NULL,'Nguyễn Phúc','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Hưng','GV_00019'),(NULL,1,26,NULL,NULL,'Nguyễn Quang','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Hưng','GV_00020'),(NULL,1,27,NULL,NULL,'Phạm Việt','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Hưng','SV_00005'),(NULL,1,28,NULL,NULL,'Nguyễn An','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Huy','SV_00006'),(NULL,1,29,NULL,NULL,'Phùng Nguyễn','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Huy','SV_00007'),(NULL,1,30,NULL,NULL,'Trần Đức','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Huy','SV_00008'),(NULL,1,31,NULL,NULL,'Phạm Văn','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Khải','SV_00009'),(NULL,1,32,NULL,NULL,'Nguyễn Văn','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Khanh','SV_00010'),(NULL,1,33,NULL,NULL,'Tạ Trung','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Kiên','SV_00011'),(NULL,1,34,NULL,NULL,'Bùi Hoàng','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Lâm','SV_00012'),(NULL,1,35,NULL,NULL,'Nguyễn Thiện','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Lâm','SV_00013'),(NULL,1,36,NULL,NULL,'Thái Ngọc','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Linh','SV_00014'),(NULL,1,37,NULL,NULL,'Lưu Hải','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Long','SV_00015'),(NULL,1,38,NULL,NULL,'Nguyễn Bảo','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Long','SV_00016'),(NULL,1,39,NULL,NULL,'Nguyễn Văn','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Luận','SV_00017'),(NULL,1,40,NULL,NULL,'Ngô Đức','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Lưu','SV_00018'),(NULL,1,41,NULL,NULL,'Đặng Văn','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Mạnh','SV_00019'),(NULL,1,42,NULL,NULL,'Nguyễn Hoàng','$2a$10$PKUexTjMK70kYixB/sGpcOTPwkEWcAibVq3EQ901e9pw/A.f8Je9G','Nam','SV_00020');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -632,4 +633,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-22 22:12:13
+-- Dump completed on 2024-05-24  0:46:10
