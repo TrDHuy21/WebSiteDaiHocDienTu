@@ -59,34 +59,6 @@
                                class="btn btn-info btn-sm">
                                 Thêm lịch
                             </a>
-<!--                            <table class="table table-striped">-->
-<!--                                <thead>-->
-<!--                                <th scope="col">Thứ</th>-->
-<!--                                <th scope="col">Tiết bắt đầu</th>-->
-<!--                                <th scope="col">Số tiết</th>-->
-<!--                                <th scope="col">Action</th>-->
-<!--                                </thead>-->
-<!--                                <tbody>-->
-<!--                                <tr th:each="tkb, i:*{thoiKhoaBieuList}" >-->
-<!--                                    <td>-->
-<!--                                        <input type="text" th:value="${tkb.thu}">-->
-<!--                                    </td>-->
-<!--                                    <td>-->
-<!--                                        <input type="text" th:value="${tkb.tietBatDau}">-->
-<!--                                    </td>-->
-<!--                                    <td>-->
-<!--                                        <input type="text" th:value="${tkb.soTiet}">-->
-<!--                                    </td>-->
-<!--                                    <td>-->
-<!--                                        <a th:href="@{/qlk/lop-mon-hoc/thoi-khoa-bieu/delete(thoiKhoaBieuId = ${tkb.id}, lopMonHocId = ${lopMonHoc.id})}"-->
-<!--                                           class="btn btn-danger btn-sm"-->
-<!--                                           onclick="if(!(confirm('Bạn muốn xóa lịch viên này?'))) return false">-->
-<!--                                            Delete-->
-<!--                                        </a>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!--                                </tbody>-->
-<!--                            </table>-->
                             <table class="table">
                                 <thead>
                                 <th scope="col">Thứ</th>
@@ -122,7 +94,12 @@
                     <tr>
                         <td>Giảng Viên</td>
                         <td>
-                            <input type="text" name="newGiangVienId" placeholder="Mã giảng viên">
+<!--                            <input type="text" name="newGiangVienId" placeholder="Mã giảng viên">-->
+                            <select name = "newGiangVienId">
+                                <option disabled selected value> Chọn giảng viên </option>
+                                <option th:each="gvmh:${giangVienMonHocList}" th:text="${gvmh.id} + ' - '+ ${gvmh.user.ho}+ ' '+${gvmh.user.ten} "
+                                        th:value="${gvmh.id}"></option>
+                            </select>
                             <button name="changeGiangVien" type="submit">
                                 Cập nhật giảng viên
                             </button>

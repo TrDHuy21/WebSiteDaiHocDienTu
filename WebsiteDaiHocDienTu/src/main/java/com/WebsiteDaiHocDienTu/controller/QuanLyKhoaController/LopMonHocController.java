@@ -44,6 +44,7 @@ public class LopMonHocController {
 
         model.addAttribute("user", SecurityUtils.getPrinciple());
         model.addAttribute("lopMonHoc", lopMonHocEntity);
+        model.addAttribute("giangVienMonHocList", lopMonHocEntity.getMonHoc().getGiangVienList());
         return "admin/lopmonhoc/lopMonHoc-form";
     }
 
