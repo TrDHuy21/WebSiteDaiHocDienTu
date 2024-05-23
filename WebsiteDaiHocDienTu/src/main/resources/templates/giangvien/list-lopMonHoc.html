@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Lớp Môn Học</title>
+</head>
+
+<body>
+<div class="container">
+    <div th:replace="fragments/header :: header"></div>
+    <div class="row" style="border-top-color: var(--bs-yellow);">
+        <div class="col-2">
+            <div sec:authorize="hasAuthority('SV')" th:replace="fragments/nav :: sv"></div>
+            <div sec:authorize="hasAuthority('GV')" th:replace="fragments/nav :: gv"></div>
+            <div sec:authorize="hasAuthority('QLK')" th:replace="fragments/nav :: qlk"></div>
+            <div sec:authorize="hasAuthority('ADMIN')" th:replace="fragments/nav :: admin"></div>
+        </div>
+        <div class="col">
+            <h3>Danh sách lớp Môn học</h3>
+            <hr>
+            <!-- Add a button-->
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                <tr>
+                    <th>Mã lớp môn học</th>
+                    <th>Tên lớp môn học</th>
+                    <th>Môn học</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="lmh : ${lopMonHocList}">
+                    <td th:text="${lmh.ten==null?'':lmh.id}"/>
+                    <td th:text="${lmh.ten==null?'':lmh.ten}"/>
+                    <td th:text="${lmh.monHoc==null?'':lmh.monHoc.ten}"/>
+                    <td>
+                        <a th:href="@{/gv/quan-ly-ket-qua-hoc-tap/{id}(id = ${lmh.id})}"
+                           class="btn btn-info btn-sm">
+                            Quản lý điểm
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+

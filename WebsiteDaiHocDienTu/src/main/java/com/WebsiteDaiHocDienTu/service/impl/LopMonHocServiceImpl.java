@@ -22,6 +22,7 @@ public class LopMonHocServiceImpl implements LopMonHocService {
     SinhVienRepository sinhVienRepository;
     MonHocRepository monHocRepository;
     QuaTrinhHocTapRepository quaTrinhHocTapRepository;
+    KetQuaHocTapRepository ketQuaHocTapRepository;
 
     QuaTrinhHocTapService quaTrinhHocTapService;
 
@@ -96,5 +97,12 @@ public class LopMonHocServiceImpl implements LopMonHocService {
     @Override
     public void deleteQuaTrinhHocTapById(int quaTrinhHocTapId) {
         quaTrinhHocTapRepository.deleteById(quaTrinhHocTapId);
+    }
+
+    @Override
+    public void saveKetQuaHocTap(LopMonHocEntity lopMonHoc) {
+        lopMonHoc.getQuaTrinhHocTapList().stream().forEach(qtht-> {
+            ketQuaHocTapRepository.save(qtht.getKetQuaHocTap());
+        });
     }
 }
