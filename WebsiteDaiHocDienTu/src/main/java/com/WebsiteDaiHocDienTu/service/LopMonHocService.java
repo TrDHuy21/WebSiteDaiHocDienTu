@@ -26,4 +26,6 @@ public interface LopMonHocService {
     void create(LopMonHocEntity lopMonHoc);
 
     void deleteQuaTrinhHocTapById(int quaTrinhHocTapId);
+
+    void saveKetQuaHocTap(LopMonHocEntity lopMonHoc);
 }
