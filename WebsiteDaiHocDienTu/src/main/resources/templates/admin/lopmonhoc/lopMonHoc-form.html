@@ -38,7 +38,6 @@
                     </tr>
                     <tr>
                         <td>Môn học</td>
-
                         <td>
                             <h5 th:text="${lopMonHoc.monHoc?.ten}"></h5>
                             <br>
@@ -94,7 +93,6 @@
                     <tr>
                         <td>Giảng Viên</td>
                         <td>
-<!--                            <input type="text" name="newGiangVienId" placeholder="Mã giảng viên">-->
                             <select name = "newGiangVienId">
                                 <option disabled selected value> Chọn giảng viên </option>
                                 <option th:each="gvmh:${giangVienMonHocList}" th:text="${gvmh.id} + ' - '+ ${gvmh.user.ho}+ ' '+${gvmh.user.ten} "
@@ -103,19 +101,18 @@
                             <button name="changeGiangVien" type="submit">
                                 Cập nhật giảng viên
                             </button>
-                            <table th:if="${lopMonHoc.giangVien != null}"
-                                   class="table table-striped">
+                            <table class="table table-striped">
                                 <thead>
                                 <th scope="col">Mã giảng viên</th>
                                 <th scope="col">Tên giảng viên</th>
                                 </thead>
-                                <tbody>
+                                <tbody th:unless="${lopMonHoc.giangVien == null}">
                                 <tr>
                                     <td>
-                                        <span th:text="${lopMonHoc.giangVien.id}"></span>
+                                        <span th:text="${lopMonHoc.giangVien?.id}"></span>
                                     </td>
                                     <td>
-                                        <span th:text="${lopMonHoc.giangVien.user.ho + ' ' + lopMonHoc.giangVien.user.ten}"></span>
+                                        <span th:text="${lopMonHoc.giangVien?.user?.ho + ' ' + lopMonHoc.giangVien?.user?.ten}"></span>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -157,7 +154,7 @@
                 </table>
 
                 <input type="hidden" th:field="*{id}">
-                <input th:field="*{monHoc}" type="hidden">
+                <input type="hidden" th:field="*{monHoc}" >
                 <input type="hidden" th:field="*{thoiKhoaBieuList}" >
                 <input type="hidden" th:field="*{quaTrinhHocTapList}" >
                 <input type="hidden" th:field="*{giangVien}">
