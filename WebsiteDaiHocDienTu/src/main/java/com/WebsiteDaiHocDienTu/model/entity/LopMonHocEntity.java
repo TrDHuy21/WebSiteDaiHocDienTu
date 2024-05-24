@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -27,7 +27,7 @@ public class LopMonHocEntity {
 
     @Column(name = "ngay_bat_dau")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date ngayBatDau;
+    private LocalDate ngayBatDau;
 
     @Column(name = "state")
     private Byte state;

@@ -46,11 +46,11 @@
 
                 <tbody>
                 <tr th:each="lmh : ${lopMonHocList}">
-
+                    <td th:text="${lmh.id==null?'':lmh.id}"/>
                     <td th:text="${lmh.ten==null?'':lmh.ten}"/>
                     <td th:text="${lmh.monHoc==null?'':lmh.monHoc.ten}"/>
-                    <td th:text="${#dates.format(lmh.ngayBatDau, 'dd-MM-yyyy')}"/>
-                    <td th:text="${lmh.state==null?'':lmh.ten}"/>
+                    <td th:text="${#temporals.format(lmh.ngayBatDau, 'dd-MM-yyyy')}"/>
+                    <td th:text="${lmh.state==null?'':lmh.state}"/>
                     <td>
                         <a th:href="@{/qlk/lop-mon-hoc/formUpdate(lopMonHocId = ${lmh.id})}"
                            class="btn btn-info btn-sm">
