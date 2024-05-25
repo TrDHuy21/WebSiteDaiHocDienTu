@@ -27,7 +27,9 @@
         <div class="col">
             <h3>Danh sách lớp Môn học</h3>
             <hr>
-            <!-- Add a button-->
+            <div th:if="${mes}" class="alert alert-danger" role="alert">
+                <span th:text="${mes}"></span>
+            </div>
             <table class="table table-bordered table-striped">
                 <thead class="table-dark">
                 <tr>
