@@ -19,7 +19,7 @@ public interface LopMonHocRepository extends JpaRepository<LopMonHocEntity, Inte
             "lmh.ngayBatDau <= :end")
     List<LopMonHocEntity> thoiKhoaBieuForGiangVien(String giangVienId, LocalDate end);
 
-    @Query("from QuaTrinhHocTapEntity qtht " +
+    @Query("select qtht.lopMonHoc from QuaTrinhHocTapEntity as qtht " +
             "where " +
                 "qtht.sinhVien.id = :sinhVienId and " +
                 "qtht.lopMonHoc.ngayBatDau <= :end ")
