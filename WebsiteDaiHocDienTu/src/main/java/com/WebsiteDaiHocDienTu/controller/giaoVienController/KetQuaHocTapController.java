@@ -31,13 +31,18 @@ public class KetQuaHocTapController {
     @GetMapping("/{id}")
     public String getLopMonHoc(Model model,
                                @PathVariable("id") int lopMonHocId) {
+        try {
+            List<QuaTrinhHocTapEntity> quaTrinhHocTapList = lopMonHocService.findById(lopMonHocId).getQuaTrinhHocTapList();
+            List<KetQuaHocTapEntity> ketQuaHocTapList = quaTrinhHocTapList.stream().map(q->q.getKetQuaHocTap()).toList();
+            model.addAttribute("user", SecurityUtils.getPrinciple());
+            model.addAttribute("lopMonHoc", lopMonHocService.findById(lopMonHocId));
+            model.addAttribute("quaTrinhHocTapList", quaTrinhHocTapList);
+            model.addAttribute("ketQuaHocTapList", ketQuaHocTapList);
+        } catch (Exception e) {
+            model.addAttribute("mes", e.getMessage());
 
-        List<QuaTrinhHocTapEntity> quaTrinhHocTapList = lopMonHocService.findById(lopMonHocId).getQuaTrinhHocTapList();
-        List<KetQuaHocTapEntity> ketQuaHocTapList = quaTrinhHocTapList.stream().map(q->q.getKetQuaHocTap()).toList();
-        model.addAttribute("user", SecurityUtils.getPrinciple());
-        model.addAttribute("lopMonHoc", lopMonHocService.findById(lopMonHocId));
-        model.addAttribute("quaTrinhHocTapList", quaTrinhHocTapList);
-        model.addAttribute("ketQuaHocTapList", ketQuaHocTapList);
+        }
+
 
         return "giangvien/quanlydiem";
     }
