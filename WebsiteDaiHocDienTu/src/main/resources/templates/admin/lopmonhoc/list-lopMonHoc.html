@@ -38,6 +38,7 @@
                     <th>Mã lớp môn học</th>
                     <th>Tên lớp môn học</th>
                     <th>Môn học</th>
+                    <th>Lịch học</th>
                     <th>Ngày bắt đầu</th>
                     <th>Trạng thái</th>
                     <th>Action</th>
@@ -49,6 +50,12 @@
                     <td th:text="${lmh.id==null?'':lmh.id}"/>
                     <td th:text="${lmh.ten==null?'':lmh.ten}"/>
                     <td th:text="${lmh.monHoc==null?'':lmh.monHoc.ten}"/>
+                    <td>
+                        <div th:each="tkb : ${lmh.thoiKhoaBieuList}">
+                            <span th:text="'Thứ: ' + ${tkb.thu} +',      '+'Tiết:'" ></span>
+                            <span th:each="i: ${#numbers.sequence(0,tkb.soTiet-1)}" th:text="${i+tkb.tietBatDau} +' '"></span>
+                        </div>
+                    </td>
                     <td th:text="${#temporals.format(lmh.ngayBatDau, 'dd-MM-yyyy')}"/>
                     <td th:text="${lmh.state==null?'':lmh.state}"/>
                     <td>
