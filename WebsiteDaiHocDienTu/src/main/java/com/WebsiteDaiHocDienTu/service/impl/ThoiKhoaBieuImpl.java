@@ -4,6 +4,7 @@ import com.WebsiteDaiHocDienTu.model.dto.request.thoiKhoaBieu.LichHocDTO;
 import com.WebsiteDaiHocDienTu.model.dto.request.thoiKhoaBieu.ThoiKhoaBieuDTO;
 import com.WebsiteDaiHocDienTu.model.entity.LopMonHocEntity;
 import com.WebsiteDaiHocDienTu.model.entity.ThoiKhoaBieuEntity;
+import com.WebsiteDaiHocDienTu.respository.LopMonHocRepository;
 import com.WebsiteDaiHocDienTu.respository.ThoiKhoaBieuRepository;
 import com.WebsiteDaiHocDienTu.service.ThoiKhoaBieuService;
 import com.WebsiteDaiHocDienTu.utils.SecurityUtils;
@@ -21,6 +22,8 @@ import java.util.*;
 public class ThoiKhoaBieuImpl implements ThoiKhoaBieuService {
 
     ThoiKhoaBieuRepository thoiKhoaBieuRepository;
+    LopMonHocRepository lopMonHocRepository;
+
 
     @Override
     public void deleteById(int id) {
@@ -41,6 +44,8 @@ public class ThoiKhoaBieuImpl implements ThoiKhoaBieuService {
         * 2. chuyển start về đầu tuần, end về cuối tuần
         * 3. tạo lịch từ start đến end
         * 4. lặp từ lớp môn học
+        *
+        * 2-3-4 = getThoiKhoaBieu()
         * */
 
         // 0. kiểm tra biến đầu vào
@@ -52,12 +57,34 @@ public class ThoiKhoaBieuImpl implements ThoiKhoaBieuService {
         }
 
         // 1. lấy ra danh sách lớp môn, ngayBatDau<end
-        List<LopMonHocEntity> lmhList = thoiKhoaBieuRepository
+        List<LopMonHocEntity> lmhList = lopMonHocRepository
                 .thoiKhoaBieuForGiangVien(
                         giangVienId,
                         end
                 );
-        // 2.  chuyển start về đầu tuần
+
+        // 2-3-4. getThoiKhoaBieu()
+        return getThoiKhoaBieu(lmhList, start, end);
+    }
+
+    @Override
+    public List<ThoiKhoaBieuDTO> getThoiKhoaBieuForSinhVien(String sinhVienId, LocalDate start, LocalDate end) throws Exception {
+        if(start==null) {
+            throw new Exception("Cần nhập ngày bắt đầu");
+        }
+        if (end == null) {
+            throw new Exception("Cần nhập ngày kết thúc");
+        }
+        List<LopMonHocEntity> lmhList = lopMonHocRepository
+                .thoiKhoaBieuForGiangVien(
+                        sinhVienId,
+                        end
+                );
+        return getThoiKhoaBieu(lmhList, start, end);
+    }
+
+    @Override
+    public List<ThoiKhoaBieuDTO> getThoiKhoaBieu(List<LopMonHocEntity> lmhList, LocalDate start, LocalDate end) throws Exception {
         LocalDate s  = start.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
 
         //3. tạo lịch từ start đến end

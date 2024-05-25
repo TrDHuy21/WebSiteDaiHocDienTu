@@ -1,6 +1,7 @@
 package com.WebsiteDaiHocDienTu.service;
 
 import com.WebsiteDaiHocDienTu.model.dto.request.thoiKhoaBieu.ThoiKhoaBieuDTO;
+import com.WebsiteDaiHocDienTu.model.entity.LopMonHocEntity;
 import com.WebsiteDaiHocDienTu.model.entity.ThoiKhoaBieuEntity;
 
 import java.time.LocalDate;
@@ -11,4 +12,7 @@ public interface ThoiKhoaBieuService {
     ThoiKhoaBieuEntity findById(int id);
 
     List<ThoiKhoaBieuDTO> getThoiKhoaBieuForGiangVien(String giangVienId, LocalDate start, LocalDate end) throws Exception;
+    List<ThoiKhoaBieuDTO> getThoiKhoaBieuForSinhVien(String sinhVienId, LocalDate start, LocalDate end) throws Exception;
+    List<ThoiKhoaBieuDTO> getThoiKhoaBieu(List<LopMonHocEntity> lmhList, LocalDate start, LocalDate end) throws Exception;
+
 }

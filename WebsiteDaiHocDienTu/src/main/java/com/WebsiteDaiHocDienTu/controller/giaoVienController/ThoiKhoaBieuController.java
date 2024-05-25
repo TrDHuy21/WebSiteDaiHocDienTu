@@ -39,15 +39,13 @@ public class ThoiKhoaBieuController {
     @GetMapping(value = "", params = "loc")
     public String getThoiKhoaBieuLoc(Model model,
                                      @ModelAttribute("khoangThoiGian")KhoangThoiGianDTO ktg) {
-        model.addAttribute("user", SecurityUtils.getPrinciple());
-        model.addAttribute("khoangThoiGian", ktg);
-        String giangVienId = SecurityUtils.getPrinciple().getUserName();
-
         try {
-
+            model.addAttribute("user", SecurityUtils.getPrinciple());
+            model.addAttribute("khoangThoiGian", ktg);
+            String giangVienId = SecurityUtils.getPrinciple().getUserName();
             model.addAttribute("tkbList", thoiKhoaBieuService.getThoiKhoaBieuForGiangVien(giangVienId, ktg.getStart(), ktg.getEnd()));
         } catch (Exception e) {
-            model.addAttribute("errorMes", e.getMessage());
+            model.addAttribute("mes", e.getMessage());
         }
         return "giangvien/thoikhoabieu";
     }

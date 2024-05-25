@@ -10,9 +10,9 @@ import java.util.Date;
 import java.util.List;
 
 public interface ThoiKhoaBieuRepository extends JpaRepository<ThoiKhoaBieuEntity, Integer> {
-    @Query("from LopMonHocEntity as lmh " +
-            "where " +
-                "lmh.giangVien.id= :giangVienId and " +
-                "lmh.ngayBatDau <= :end")
-    List<LopMonHocEntity> thoiKhoaBieuForGiangVien(String giangVienId, LocalDate end);
+//    @Query("from LopMonHocEntity as lmh " +
+//            "where " +
+//                "lmh.giangVien.id= :giangVienId and " +
+//                "lmh.ngayBatDau <= :end")
+//    List<LopMonHocEntity> thoiKhoaBieuForGiangVien(String giangVienId, LocalDate end);
 }
