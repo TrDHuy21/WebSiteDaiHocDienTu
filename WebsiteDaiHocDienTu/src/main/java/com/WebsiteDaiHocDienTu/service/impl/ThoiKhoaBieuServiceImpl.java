@@ -19,7 +19,7 @@ import java.util.*;
 
 @Service
 @AllArgsConstructor
-public class ThoiKhoaBieuImpl implements ThoiKhoaBieuService {
+public class ThoiKhoaBieuServiceImpl implements ThoiKhoaBieuService {
 
     ThoiKhoaBieuRepository thoiKhoaBieuRepository;
     LopMonHocRepository lopMonHocRepository;
@@ -76,7 +76,7 @@ public class ThoiKhoaBieuImpl implements ThoiKhoaBieuService {
             throw new Exception("Cần nhập ngày kết thúc");
         }
         List<LopMonHocEntity> lmhList = lopMonHocRepository
-                .thoiKhoaBieuForGiangVien(
+                .thoiKhoaBieuForSinhVien(
                         sinhVienId,
                         end
                 );
