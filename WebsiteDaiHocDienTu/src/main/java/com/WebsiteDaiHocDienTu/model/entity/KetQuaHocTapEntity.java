@@ -52,4 +52,11 @@ public class KetQuaHocTapEntity {
 
     @OneToOne(mappedBy = "ketQuaHocTap")
     private QuaTrinhHocTapEntity quaTrinhHocTap;
+
+//    @ManyToOne
+//    @JoinColumn(name = "qua_trinh_hoc_tap_id")
+//    private QuaTrinhHocTapEntity quaTrinhHocTap;
+    @ManyToOne
+    @JoinColumn(name = "mon_hoc_id")
+    private MonHocEntity monHoc;
 }

@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Danh Sách môn Học</title>
+</head>
+
+<body>
+<div class="container">
+    <div th:replace="fragments/header :: header"></div>
+    <div class="row" style="border-top-color: var(--bs-yellow);">
+        <div class="col-2">
+            <div sec:authorize="hasAuthority('SV')" th:replace="fragments/nav :: sv"></div>
+            <div sec:authorize="hasAuthority('GV')" th:replace="fragments/nav :: gv"></div>
+            <div sec:authorize="hasAuthority('QLK')" th:replace="fragments/nav :: qlk"></div>
+            <div sec:authorize="hasAuthority('ADMIN')" th:replace="fragments/nav :: admin"></div>
+        </div>
+        <div class="col">
+            <h3>Kết quả học tập</h3>
+            <hr>
+            <!-- Add a button-->
+            <a th:href="@{/qlk/mon-hoc/formCreate}"
+               class="btn btn-primary btn-sm mb-3">
+                Thêm môn học
+            </a>
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                <tr>
+                    <th>Tên môn học</th>
+                    <th>tx1</th>
+                    <th>tx2</th>
+                    <th>tx3</th>
+                    <th>GK1</th>
+                    <th>GK2</th>
+                    <th>GK3</th>
+                    <th>thi lần 1</th>
+                    <th>thi lần 2</th>
+                    <th>Phúc khảo 1</th>
+                    <th>Phúc khảo 2</th>
+                    <th>Hệ số tín</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="kq : ${ketquahoctap}">
+                    <td th:text="${kq.monHoc.ten}"/>
+                    <td th:text="${kq.tx1==null?'':kq.tx1}"/>
+                    <td th:text="${kq.tx2==null?'':kq.tx2}"/>
+                    <td th:text="${kq.tx3==null?'':kq.tx3}"/>
+                    <td th:text="${kq.giuaKi1==null?'':kq.giuaKi1}"/>
+                    <td th:text="${kq.giuaKi2==null?'':kq.giuaKi2}"/>
+                    <td th:text="${kq.giuaKi3==null?'':kq.giuaKi3}"/>
+                    <td th:text="${kq.thi1==null?'':kq.thi1}"/>
+                    <td th:text="${kq.thi2==null?'':kq.thi2}"/>
+                    <td th:text="${kq.phucKhao1==null?'':kq.phucKhao1}"/>
+                    <td th:text="${kq.phucKhao2==null?'':kq.phucKhao2}"/>
+                    <td th:text="${kq.monHoc.soTin==null?'':kq.monHoc.soTin}"/>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+

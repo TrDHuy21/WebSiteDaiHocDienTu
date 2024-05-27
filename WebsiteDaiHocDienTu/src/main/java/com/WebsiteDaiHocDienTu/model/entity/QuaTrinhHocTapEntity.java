@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -31,6 +33,9 @@ public class QuaTrinhHocTapEntity {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ket_qua_hoc_tap_id")
     private KetQuaHocTapEntity ketQuaHocTap;
+
+//    @OneToMany(mappedBy = "quaTrinhHocTap")
+//    private List<KetQuaHocTapEntity> ketQuaHocTaps;
 
 
 }
