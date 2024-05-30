@@ -60,7 +60,6 @@ public class MonHocController {
         model.addAttribute("user", SecurityUtils.getPrinciple());
 
         MonHocEntity monHocEntity = monHocService.findByIdAndKhoaId(id);
-        System.out.println(monHocEntity.getKhoa());
         model.addAttribute("monHoc", monHocEntity);
         return "admin/monhoc/monHoc-form";
     }

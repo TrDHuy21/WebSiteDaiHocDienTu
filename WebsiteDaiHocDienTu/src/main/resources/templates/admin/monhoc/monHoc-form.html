@@ -83,14 +83,14 @@
                     <td><input type="text" th:field="*{state}"
                                class="form-control mb-4 w-25 " placeholder="state"></td>
                 </tr>
-                <tr>
+                <tr th:if="${monHoc.id}">
                     <td>
                         Giảng Viên phụ trách
                         </td>
                     <td>
                         <a th:href="@{/qlk/mon-hoc/giang-vien(monHocId = *{id})}"
                            class="btn btn-info btn-sm">
-                            Thêm viên phụ trách
+                            Giảng viên phụ trách
                         </a>
                         <table class="table table-striped">
                         <thead>
