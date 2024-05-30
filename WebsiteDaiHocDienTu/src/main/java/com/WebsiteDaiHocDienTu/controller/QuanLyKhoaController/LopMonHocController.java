@@ -1,14 +1,10 @@
 package com.WebsiteDaiHocDienTu.controller.QuanLyKhoaController;
 
-import com.WebsiteDaiHocDienTu.model.dto.UserDTO;
 import com.WebsiteDaiHocDienTu.model.entity.LopMonHocEntity;
-import com.WebsiteDaiHocDienTu.model.entity.ThoiKhoaBieuEntity;
 import com.WebsiteDaiHocDienTu.service.LopMonHocService;
-import com.WebsiteDaiHocDienTu.service.SinhVienService;
 import com.WebsiteDaiHocDienTu.service.ThoiKhoaBieuService;
 import com.WebsiteDaiHocDienTu.utils.SecurityUtils;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -39,14 +35,19 @@ public class LopMonHocController {
     }
     @GetMapping("/formUpdate")
     public String formUpdate(@RequestParam("lopMonHocId") int lopMonHocId, Model model) {
+        try {
+            LopMonHocEntity lopMonHocEntity = lopMonHocService.findById(lopMonHocId);
 
-        LopMonHocEntity lopMonHocEntity = lopMonHocService.findById(lopMonHocId);
+            model.addAttribute("user", SecurityUtils.getPrinciple());
+            model.addAttribute("lopMonHoc", lopMonHocEntity);
+            model.addAttribute("giangVienMonHocList", lopMonHocEntity.getMonHoc().getGiangVienList());
 
-        model.addAttribute("user", SecurityUtils.getPrinciple());
-        model.addAttribute("lopMonHoc", lopMonHocEntity);
-        model.addAttribute("giangVienMonHocList", lopMonHocEntity.getMonHoc().getGiangVienList());
+        } catch (Exception ignored) {
+            return "admin/lopmonhoc/lopMonHoc-form";
+
+        }
         return "admin/lopmonhoc/lopMonHoc-form";
-    }
+        }
 
     @PostMapping(value = "/save", params = {"save"})
     public String save(@ModelAttribute("lopMonhoc") LopMonHocEntity lopMonHoc, Model model) {
@@ -113,7 +114,7 @@ public class LopMonHocController {
         model.addAttribute("user", SecurityUtils.getPrinciple());
         return "redirect:/qlk/lop-mon-hoc/formUpdate?lopMonHocId=" + lopMonHocId;
     }
-    @GetMapping(value = "/save", params = {"changeMonHoc"})
+    @PostMapping(value = "/save", params = {"changeMonHoc"})
     public String changeMonHoc(Model model,
                                @RequestParam("newMonHocId") int newMonHocId,
                                @ModelAttribute("lopMonHoc") LopMonHocEntity lopMonHocEntity){
