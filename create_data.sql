@@ -118,10 +118,13 @@ CREATE TABLE `ket_qua_hoc_tap` (
   `tx1` float DEFAULT NULL,
   `tx2` float DEFAULT NULL,
   `tx3` float DEFAULT NULL,
+  `mon_hoc_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_rocmfscx9c19y7wuk5v3tt4st` (`qua_trinh_hoc_tap_id`),
-  CONSTRAINT `FK5u2hh698ybwjs6nopvwb73p5v` FOREIGN KEY (`qua_trinh_hoc_tap_id`) REFERENCES `qua_trinh_hoc_tap` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `FKrd48dp8ownucfox5g6o1hmx66` (`mon_hoc_id`),
+  CONSTRAINT `FK5u2hh698ybwjs6nopvwb73p5v` FOREIGN KEY (`qua_trinh_hoc_tap_id`) REFERENCES `qua_trinh_hoc_tap` (`id`),
+  CONSTRAINT `FKrd48dp8ownucfox5g6o1hmx66` FOREIGN KEY (`mon_hoc_id`) REFERENCES `mon_hoc` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,7 +133,7 @@ CREATE TABLE `ket_qua_hoc_tap` (
 
 LOCK TABLES `ket_qua_hoc_tap` WRITE;
 /*!40000 ALTER TABLE `ket_qua_hoc_tap` DISABLE KEYS */;
-INSERT INTO `ket_qua_hoc_tap` VALUES (NULL,NULL,NULL,2,NULL,NULL,3,NULL,NULL,NULL,NULL,NULL),(NULL,NULL,NULL,3,NULL,NULL,4,NULL,NULL,NULL,NULL,NULL),(9,1,1,4,1,1,5,1,1,1,1,1),(9,1,1,5,1,1,6,1,1,1,1,1),(9,1,1,8,1,1,NULL,1,1,1,1,1),(NULL,NULL,NULL,9,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(NULL,NULL,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(NULL,NULL,NULL,11,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `ket_qua_hoc_tap` VALUES (NULL,NULL,NULL,2,NULL,NULL,3,NULL,NULL,NULL,NULL,NULL,NULL),(NULL,NULL,NULL,3,NULL,NULL,4,NULL,NULL,NULL,NULL,NULL,NULL),(9,1,1,4,1,1,5,1,1,1,1,1,NULL),(9,1,1,5,1,1,6,1,1,1,1,1,NULL),(9,1,1,8,1,1,NULL,1,1,1,1,1,NULL),(NULL,NULL,NULL,9,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(NULL,NULL,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(NULL,NULL,NULL,11,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(NULL,NULL,NULL,12,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(NULL,NULL,NULL,13,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `ket_qua_hoc_tap` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,7 +201,7 @@ CREATE TABLE `lop_mon_hoc` (
   `id` int NOT NULL AUTO_INCREMENT,
   `mon_hoc_id` int DEFAULT NULL,
   `state` tinyint DEFAULT NULL,
-  `ngay_bat_dau` datetime(6) DEFAULT NULL,
+  `ngay_bat_dau` date DEFAULT NULL,
   `giang_vien_id` varchar(255) DEFAULT NULL,
   `ten` varchar(255) DEFAULT NULL,
   `khoa_id` int DEFAULT NULL,
@@ -209,7 +212,7 @@ CREATE TABLE `lop_mon_hoc` (
   CONSTRAINT `fg_khoa` FOREIGN KEY (`khoa_id`) REFERENCES `khoa` (`id`),
   CONSTRAINT `FK9myvf12yau7oi2eh40q1ekgaa` FOREIGN KEY (`mon_hoc_id`) REFERENCES `mon_hoc` (`id`),
   CONSTRAINT `FKl8yhig40y30coowmqhtd34obr` FOREIGN KEY (`giang_vien_id`) REFERENCES `giang_vien` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -218,7 +221,7 @@ CREATE TABLE `lop_mon_hoc` (
 
 LOCK TABLES `lop_mon_hoc` WRITE;
 /*!40000 ALTER TABLE `lop_mon_hoc` DISABLE KEYS */;
-INSERT INTO `lop_mon_hoc` VALUES (1,1,1,'2023-12-19 00:00:00.000000','GV_00009','Lập trình java nâng cao 1',1),(2,1,1,'2023-12-20 07:23:30.000000','GV_00001','Lập trình java nâng cao 2',1),(3,2,1,'2023-12-20 07:23:30.000000','GV_00001','Trí tuệ nhân tạo 1',1);
+INSERT INTO `lop_mon_hoc` VALUES (1,1,1,'2024-05-20','GV_00001','Lập trình java nâng cao 1',1),(2,1,1,'2024-05-20','GV_00001','Lập trình java nâng cao 2',1),(3,2,1,'2024-05-21','GV_00001','Trí tuệ nhân tạo 1',1),(10,1,NULL,NULL,NULL,'	 Lập trình java nâng cao 3',1);
 /*!40000 ALTER TABLE `lop_mon_hoc` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -272,7 +275,7 @@ CREATE TABLE `mon_hoc` (
   PRIMARY KEY (`id`),
   KEY `FKmu52ftg6qdrfy0j3oy5w3q6b9` (`khoa_id`),
   CONSTRAINT `FKmu52ftg6qdrfy0j3oy5w3q6b9` FOREIGN KEY (`khoa_id`) REFERENCES `khoa` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -409,7 +412,7 @@ CREATE TABLE `qua_trinh_hoc_tap` (
   CONSTRAINT `FKc166aymklimpoghs8pma92cjf` FOREIGN KEY (`ket_qua_hoc_tap_id`) REFERENCES `ket_qua_hoc_tap` (`id`),
   CONSTRAINT `FKdrsx4wp1ivbd60k6nl8x2regk` FOREIGN KEY (`lop_mon_hoc_id`) REFERENCES `lop_mon_hoc` (`id`),
   CONSTRAINT `FKjfa4jnwi21gwobpr2wqoeel4e` FOREIGN KEY (`sinh_vien_id`) REFERENCES `sinh_vien` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -418,7 +421,7 @@ CREATE TABLE `qua_trinh_hoc_tap` (
 
 LOCK TABLES `qua_trinh_hoc_tap` WRITE;
 /*!40000 ALTER TABLE `qua_trinh_hoc_tap` DISABLE KEYS */;
-INSERT INTO `qua_trinh_hoc_tap` VALUES (3,1,0,'SV_00002',2),(4,1,0,'SV_00003',3),(5,2,0,'SV_00001',4),(6,NULL,0,'SV_00002',5),(7,1,0,'SV_00004',9),(8,1,0,'SV_00005',10),(9,1,0,'SV_00010',11);
+INSERT INTO `qua_trinh_hoc_tap` VALUES (3,1,0,'SV_00002',2),(4,1,0,'SV_00003',3),(5,2,0,'SV_00001',4),(6,NULL,0,'SV_00002',5),(7,1,0,'SV_00004',9),(8,1,0,'SV_00005',10),(9,1,0,'SV_00010',11),(10,1,0,'SV_00001',12),(11,3,0,'SV_00001',13);
 /*!40000 ALTER TABLE `qua_trinh_hoc_tap` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -572,7 +575,7 @@ CREATE TABLE `thoi_khoa_bieu` (
   PRIMARY KEY (`id`),
   KEY `FKi3rhw9e1tyfq9vn8io0bvo5nx` (`lop_mon_hoc_id`),
   CONSTRAINT `FKi3rhw9e1tyfq9vn8io0bvo5nx` FOREIGN KEY (`lop_mon_hoc_id`) REFERENCES `lop_mon_hoc` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -581,7 +584,7 @@ CREATE TABLE `thoi_khoa_bieu` (
 
 LOCK TABLES `thoi_khoa_bieu` WRITE;
 /*!40000 ALTER TABLE `thoi_khoa_bieu` DISABLE KEYS */;
-INSERT INTO `thoi_khoa_bieu` VALUES (1,1,3,1,4),(2,1,3,1,5),(32,NULL,NULL,NULL,NULL),(33,NULL,NULL,NULL,NULL);
+INSERT INTO `thoi_khoa_bieu` VALUES (1,1,3,1,4),(2,1,3,1,5),(32,NULL,NULL,NULL,NULL),(33,NULL,NULL,NULL,NULL),(37,2,3,4,2),(38,2,3,4,5),(39,3,2,3,3),(40,3,2,3,6);
 /*!40000 ALTER TABLE `thoi_khoa_bieu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -633,4 +636,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-24  0:46:10
+-- Dump completed on 2024-05-31 23:19:37
