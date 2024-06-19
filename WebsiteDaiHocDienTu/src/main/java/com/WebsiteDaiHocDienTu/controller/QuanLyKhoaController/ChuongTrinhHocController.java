@@ -59,7 +59,8 @@ public class ChuongTrinhHocController {
             model.addAttribute("message","Thêm thành công");
         }
         model.addAttribute("user", userDTO);
-        return "/admin/chuongtrinhhoc/ListChuongTrinhHoc";
+
+        return "redirect:/qlk/nganh/"+id+"/quan-ly-chuong-trinh-hoc";
     }
 
     @GetMapping("{nganhId}/quan-ly-chuong-trinh-hoc/{id}/sua-chuong-trinh-hoc")
